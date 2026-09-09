@@ -92,7 +92,7 @@
   "status.terminalOnline": "ターミナル稼働中",
   "maps.title": "係争ゾーンのマップ",
   "maps.desc": "各係争ゾーンのステーション見取り図です。クリックで拡大表示し、スクロールでズーム、ドラッグで移動できます。",
-  "maps.badge": "仮図面",
+  "maps.badge": "セクター図面",
   "maps.open": "開く",
   "maps.openLabel": "{name} のマップを開く",
   "maps.close": "マップを閉じる",

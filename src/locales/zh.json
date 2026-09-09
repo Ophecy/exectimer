@@ -92,7 +92,7 @@
   "status.terminalOnline": "终端在线",
   "maps.title": "争夺区地图",
   "maps.desc": "各争夺区的站点平面图。点击可全屏打开，滚轮缩放，拖动平移。",
-  "maps.badge": "占位图纸",
+  "maps.badge": "区域图纸",
   "maps.open": "打开",
   "maps.openLabel": "打开 {name} 地图",
   "maps.close": "关闭地图",

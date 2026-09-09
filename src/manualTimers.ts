@@ -10,13 +10,14 @@ const ZONE_NAMES: Record<ZoneKey, string> = {
   ruinstation: 'Ruin Station',
 }
 
-// Community contested-zone maps by u/Zane_DragonBorn — credited in the maps
-// section. High resolution on purpose: the modal zooms and pans them.
+// ASOP-style sector plans redrawn from the community contested-zone maps by
+// u/Zane_DragonBorn (credited on each plate). Vector on purpose: the modal
+// zooms and pans them, and the ink-on-amber line work matches the terminal.
 const BASE = import.meta.env.BASE_URL
 const ZONE_MAP_SRC: Record<ZoneKey, string> = {
-  checkmate: `${BASE}maps/checkmate.webp`,
-  orbituary: `${BASE}maps/orbituary.webp`,
-  ruinstation: `${BASE}maps/ruinstation.webp`,
+  checkmate: `${BASE}maps/checkmate.svg`,
+  orbituary: `${BASE}maps/orbituary.svg`,
+  ruinstation: `${BASE}maps/ruinstation.svg`,
 }
 
 export type StationCategory = 'keycard' | 'compboard'
@@ -435,6 +436,7 @@ let mapScale = 1
 let mapTx = 0
 let mapTy = 0
 let mapDragging = false
+let mapDragged = false
 let mapDragStartX = 0
 let mapDragStartY = 0
 let mapDragStartTx = 0
@@ -479,6 +481,7 @@ function buildMapModal(doc: Document): HTMLElement {
 
   viewport.addEventListener('pointerdown', (e) => {
     mapDragging = true
+    mapDragged = false
     mapDragStartX = e.clientX
     mapDragStartY = e.clientY
     mapDragStartTx = mapTx
@@ -487,8 +490,11 @@ function buildMapModal(doc: Document): HTMLElement {
   })
   viewport.addEventListener('pointermove', (e) => {
     if (!mapDragging) return
-    mapTx = mapDragStartTx + (e.clientX - mapDragStartX)
-    mapTy = mapDragStartTy + (e.clientY - mapDragStartY)
+    const dx = e.clientX - mapDragStartX
+    const dy = e.clientY - mapDragStartY
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) mapDragged = true
+    mapTx = mapDragStartTx + dx
+    mapTy = mapDragStartTy + dy
     applyMapTransform()
   })
   viewport.addEventListener('pointerup', () => {
@@ -496,6 +502,11 @@ function buildMapModal(doc: Document): HTMLElement {
   })
   viewport.addEventListener('pointercancel', () => {
     mapDragging = false
+  })
+
+  // clicking the backdrop closes; a pan that ends off the plate does not
+  viewport.addEventListener('click', (e) => {
+    if (e.target !== img && !mapDragged) closeMapModal()
   })
 
   doc.addEventListener('keydown', (e) => {

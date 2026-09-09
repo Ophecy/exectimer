@@ -92,7 +92,7 @@
   "status.terminalOnline": "Terminale online",
   "maps.title": "Mappe delle zone contese",
   "maps.desc": "Piante delle stazioni di ogni zona contesa. Apri una pianta a dimensione piena, poi usa la rotella per ingrandire e trascina per spostarti.",
-  "maps.badge": "Piante provvisorie",
+  "maps.badge": "Piante di settore",
   "maps.open": "Apri",
   "maps.openLabel": "Apri la mappa di {name}",
   "maps.close": "Chiudi la mappa",

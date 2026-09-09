@@ -92,7 +92,7 @@
   "status.terminalOnline": "Terminal en línea",
   "maps.title": "Mapas de zonas en disputa",
   "maps.desc": "Planos de las estaciones de cada zona en disputa. Abre un plano a tamaño completo, luego usa la rueda para acercar y arrastra para desplazarte.",
-  "maps.badge": "Planos provisionales",
+  "maps.badge": "Planos de sector",
   "maps.open": "Abrir",
   "maps.openLabel": "Abrir el mapa de {name}",
   "maps.close": "Cerrar el mapa",

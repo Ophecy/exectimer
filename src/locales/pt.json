@@ -92,7 +92,7 @@
   "status.terminalOnline": "Terminal online",
   "maps.title": "Mapas das zonas contestadas",
   "maps.desc": "Plantas das estações de cada zona contestada. Abra uma planta em tamanho real, depois use a roda para ampliar e arraste para deslocar.",
-  "maps.badge": "Plantas provisórias",
+  "maps.badge": "Plantas do setor",
   "maps.open": "Abrir",
   "maps.openLabel": "Abrir o mapa de {name}",
   "maps.close": "Fechar o mapa",

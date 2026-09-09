@@ -92,7 +92,7 @@
   "status.terminalOnline": "Terminal online",
   "maps.title": "Contested Zone Maps",
   "maps.desc": "Station plans for each contested zone. Open a plan full size, then scroll to zoom and drag to pan.",
-  "maps.badge": "Placeholder plates",
+  "maps.badge": "Sector plans",
   "maps.open": "Open",
   "maps.openLabel": "Open the {name} map",
   "maps.close": "Close map",

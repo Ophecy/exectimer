@@ -707,11 +707,11 @@ select.hw-btn {
   letter-spacing: 0.03em;
 }
 
+/* the plate is a vector schematic: show it whole, never crop it */
 .map img {
   display: block;
   width: 100%;
-  height: 168px;
-  object-fit: cover;
+  height: auto;
 }
 
 .map-foot {
@@ -1227,9 +1227,12 @@ body[data-admin="open"] .scrim {
   touch-action: none;
 }
 
+/* the plate is transparent ink line work: it needs its amber ground
+   here, since the modal backdrop is hardware-dark */
 .czt-map-modal-img {
   max-width: min(92vw, 1400px);
   max-height: 92vh;
+  background: var(--color-amber);
   transform-origin: center center;
   user-select: none;
   -webkit-user-drag: none;

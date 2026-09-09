@@ -92,7 +92,7 @@
   "status.terminalOnline": "Terminal online",
   "maps.title": "Mapy spornych stref",
   "maps.desc": "Plany stacji dla każdej spornej strefy. Otwórz plan w pełnym rozmiarze, następnie przewijaj, aby przybliżyć, i przeciągaj, aby przesuwać.",
-  "maps.badge": "Plany tymczasowe",
+  "maps.badge": "Plany sektora",
   "maps.open": "Otwórz",
   "maps.openLabel": "Otwórz mapę {name}",
   "maps.close": "Zamknij mapę",

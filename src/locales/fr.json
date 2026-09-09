@@ -92,7 +92,7 @@
   "status.terminalOnline": "Terminal en ligne",
   "maps.title": "Cartes des zones contestées",
   "maps.desc": "Plans des stations de chaque zone contestée. Ouvrez un plan en grand, puis utilisez la molette pour zoomer et le glisser pour vous déplacer.",
-  "maps.badge": "Plans provisoires",
+  "maps.badge": "Plans de secteur",
   "maps.open": "Ouvrir",
   "maps.openLabel": "Ouvrir la carte de {name}",
   "maps.close": "Fermer la carte",

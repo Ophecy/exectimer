@@ -92,7 +92,7 @@
   "status.terminalOnline": "Terminal online",
   "maps.title": "Karten der umkämpften Zonen",
   "maps.desc": "Stationspläne für jede umkämpfte Zone. Plan groß öffnen, dann zum Zoomen scrollen und zum Verschieben ziehen.",
-  "maps.badge": "Platzhalter-Pläne",
+  "maps.badge": "Sektorpläne",
   "maps.open": "Öffnen",
   "maps.openLabel": "Karte von {name} öffnen",
   "maps.close": "Karte schließen",

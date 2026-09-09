@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" role="img" aria-labelledby="ttl">
+  <title id="ttl">Checkmate Station — contested zone plan</title>
+
+  <style>
+    text{font-family:ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;fill:#150F0A}
+    .t-lg{font-size:16px;font-weight:700;letter-spacing:.08em}
+    .t{font-size:11px;font-weight:700;letter-spacing:.08em}
+    .t-sm{font-size:9.5px;font-weight:700;letter-spacing:.07em}
+    .t-xs{font-size:8px;font-weight:700;letter-spacing:.06em}
+    .dim{fill:rgba(21,15,10,.6)}
+    .cream{fill:#FBE9C8}
+    .rm{fill:rgba(21,15,10,.07);stroke:#150F0A;stroke-width:1.3}
+    .rm2{fill:rgba(21,15,10,.15);stroke:#150F0A;stroke-width:1.3}
+    .hair{stroke:rgba(21,15,10,.3);stroke-width:1;fill:none}
+    .p{fill:none;stroke:#150F0A;stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round}
+    .k-red{fill:none;stroke:#FBE9C8;stroke-width:2;stroke-dasharray:6 6}
+    .k-blue{fill:none;stroke:#FBE9C8;stroke-width:2.2;stroke-dasharray:.1 5.5;stroke-linecap:round}
+    .lift{fill:none;stroke:#150F0A;stroke-width:2;stroke-dasharray:7 5}
+  </style>
+
+  <defs>
+    <g id="obj"><path d="M0,-8 8,0 0,8 -8,0Z" fill="#FBE9C8" stroke="#150F0A" stroke-width="1.6"/></g>
+    <g id="bolt"><path d="M1.8,-3.6 -2.2,.6 0,.6 -1.8,3.6 2.2,-.6 0,-.6Z" fill="#FBE9C8"/></g>
+    <g id="fdoor"><circle r="6" fill="#150F0A"/><use href="#bolt"/></g>
+    <g id="fspawn"><rect x="-6" y="-6" width="12" height="12" fill="#150F0A"/><use href="#bolt"/></g>
+    <g id="print"><rect x="-6.5" y="-5.5" width="13" height="11" fill="#FBE9C8" stroke="#150F0A" stroke-width="1.4"/><path d="M-3.5,-2h7M-3.5,0h7M-3.5,2h7" stroke="#150F0A" stroke-width="1.1"/></g>
+    <g id="elev"><circle r="6" fill="none" stroke="#150F0A" stroke-width="1.8"/><path d="M0,-3.8 2.8,-.8 -2.8,-.8Z M0,3.8 2.8,.8 -2.8,.8Z" fill="#150F0A"/></g>
+    <g id="extr"><circle r="6.5" fill="#150F0A"/><path d="M0,-4 3,-1 -3,-1Z M0,4 3,1 -3,1Z" fill="#FBE9C8"/></g>
+    <g id="frgt"><circle r="6.5" fill="#150F0A"/><rect x="-3.2" y="-3" width="6.4" height="6" fill="#FBE9C8"/></g>
+    <g id="shop"><circle r="6.5" fill="#150F0A"/><path d="M-3.4,2.2v-3.8L0,-3.8 3.4,-1.6v3.8Z" fill="#FBE9C8"/></g>
+    <g id="lock"><rect x="-1.2" y="-7" width="2.4" height="14" fill="#150F0A"/></g>
+    <g id="arrow"><path d="M-5,-5.5 5.5,0 -5,5.5Z" fill="#150F0A"/></g>
+  </defs>
+
+  <!-- ============ LEGEND COLUMN ============ -->
+  <g>
+    <text class="t-lg" x="24" y="30">CHECKMATE</text>
+    <text class="t-xs dim" x="24" y="44">CONTESTED ZONE — SECTOR PLAN</text>
+    <path class="hair" d="M24,54H160"/>
+
+    <use href="#obj" x="32" y="72"/><text class="t-sm" x="48" y="75.5">OBJECTIVE</text>
+    <use href="#fspawn" x="32" y="92"/><text class="t-sm" x="48" y="95.5">FUSE SPAWNER</text>
+    <use href="#fdoor" x="32" y="112"/><text class="t-sm" x="48" y="115.5">FUSE DOOR</text>
+    <use href="#print" x="32" y="132"/><text class="t-sm" x="48" y="135.5">BLUE CARD PRINTER</text>
+    <use href="#elev" x="32" y="152"/><text class="t-sm" x="48" y="155.5">ELEVATOR</text>
+    <use href="#extr" x="32" y="172"/><text class="t-sm" x="48" y="175.5">EXTRACT ELEVATOR</text>
+    <use href="#frgt" x="32" y="192"/><text class="t-sm" x="48" y="195.5">FREIGHT ELEVATOR</text>
+    <use href="#lock" x="32" y="212"/><text class="t-sm" x="48" y="215.5">SPAWN LOCKER</text>
+    <use href="#shop" x="32" y="232"/><text class="t-sm" x="48" y="235.5">GEAR SHOP</text>
+
+    <path class="hair" d="M24,248H160"/>
+
+    <path class="p" d="M24,266H44"/><text class="t-sm" x="52" y="269.5">FREE PATH</text>
+    <path class="p" d="M24,286H44"/><path class="k-red" d="M24,286H44"/><text class="t-sm" x="52" y="289.5">RED KEY PATH</text>
+    <path class="p" d="M24,306H44"/><path class="k-blue" d="M24,306H44"/><text class="t-sm" x="52" y="309.5">BLUE KEY PATH</text>
+    <path class="lift" d="M24,326H44"/><text class="t-sm" x="52" y="329.5">ELEVATOR PATH</text>
+
+    <path class="hair" d="M24,346H160"/>
+    <text class="t-sm" x="24" y="364">SPAWN INDEX</text>
+    <rect class="rm2" x="24" y="372" width="136" height="16"/>
+    <text class="t-xs" x="32" y="383">FIRERATS · SITEWIDE</text>
+    <rect class="rm2" x="24" y="392" width="136" height="16"/>
+    <text class="t-xs" x="32" y="403">KOPION · SITEWIDE</text>
+
+    <text class="t-xs dim" x="24" y="500">MAP DATA</text>
+    <text class="t-xs dim" x="24" y="512">u/ZANE_DRAGONBORN</text>
+    <path class="hair" d="M175,20V520"/>
+  </g>
+
+  <!-- ============ PLAN ============ -->
+  <g>
+    <!-- structures -->
+    <rect class="rm" x="487" y="28" width="116" height="175"/>
+    <rect class="rm2" x="498" y="38" width="44" height="52"/>
+    <rect class="rm2" x="551" y="38" width="42" height="52"/>
+    <rect class="rm2" x="498" y="102" width="95" height="42"/>
+    <rect class="rm2" x="516" y="152" width="70" height="41"/>
+    <rect class="rm" x="433" y="52" width="40" height="34"/>
+
+    <rect class="rm" x="196" y="236" width="140" height="76"/>
+    <rect class="rm2" x="206" y="246" width="52" height="56"/>
+    <rect class="rm2" x="266" y="246" width="60" height="56"/>
+    <rect class="rm" x="178" y="252" width="18" height="34"/>
+    <rect class="rm" x="326" y="264" width="26" height="24"/>
+    <rect class="rm" x="306" y="290" width="24" height="22"/>
+
+    <rect class="rm" x="344" y="362" width="94" height="58"/>
+    <rect class="rm2" x="354" y="372" width="36" height="38"/>
+    <rect class="rm2" x="396" y="372" width="34" height="38"/>
+    <rect class="rm" x="440" y="398" width="44" height="34"/>
+
+    <rect class="rm" x="452" y="222" width="168" height="112"/>
+    <rect class="rm2" x="462" y="232" width="68" height="38"/>
+    <rect class="rm2" x="462" y="286" width="68" height="38"/>
+    <rect class="rm2" x="548" y="286" width="62" height="38"/>
+    <rect class="rm" x="396" y="278" width="40" height="30"/>
+
+    <rect class="rm" x="620" y="58" width="22" height="196"/>
+    <rect class="rm" x="596" y="110" width="24" height="44"/>
+    <rect class="rm" x="642" y="126" width="26" height="34"/>
+
+    <rect class="rm" x="620" y="246" width="155" height="20"/>
+    <rect class="rm" x="666" y="266" width="40" height="46"/>
+    <rect class="rm" x="690" y="212" width="46" height="34"/>
+
+    <rect class="rm" x="556" y="330" width="62" height="48"/>
+    <rect class="rm" x="505" y="458" width="40" height="36"/>
+    <rect class="rm" x="556" y="452" width="50" height="44"/>
+    <rect class="rm" x="646" y="384" width="32" height="28"/>
+
+    <!-- free-path network -->
+    <path class="p" d="M538,315V256H775 M630,43V256 M411,291H538 M612,256V342L580,368V487"/>
+    <circle cx="630" cy="43" r="5" fill="#150F0A"/>
+    <circle cx="775" cy="256" r="5" fill="#150F0A"/>
+
+    <!-- keyed paths -->
+    <path class="p" d="M504,67V192H613V254"/>
+    <path class="k-red" d="M504,67V192H613V254"/>
+    <path class="p" d="M344,394H538V315 M471,69H504"/>
+    <path class="k-blue" d="M344,394H538V315 M471,69H504"/>
+
+    <!-- one-way lifts -->
+    <path class="lift" d="M440,68 337,276 M318,301 344,394"/>
+    <use href="#arrow" transform="translate(388,172) rotate(116)"/>
+    <use href="#arrow" transform="translate(331,347) rotate(74)"/>
+
+    <!-- door plates -->
+    <rect x="586" y="212" width="52" height="13" fill="#150F0A"/>
+    <text class="t-xs cream" x="612" y="222" text-anchor="middle">RED DOOR</text>
+    <rect x="512" y="309" width="54" height="13" fill="#150F0A"/>
+    <text class="t-xs cream" x="539" y="319" text-anchor="middle">BLUE DOOR</text>
+
+    <!-- fixtures -->
+    <use href="#obj" x="526" y="68"/><text class="t" x="540" y="72">TABLET 1</text>
+    <use href="#obj" x="247" y="263"/><text class="t" x="247" y="230" text-anchor="middle">TABLET 3</text>
+    <use href="#obj" x="247" y="294"/><text class="t" x="247" y="328" text-anchor="middle">TABLET 2</text>
+    <text class="t-sm dim" x="262" y="342" text-anchor="middle">EXTRACT · FREIGHT ELEV.</text>
+
+    <use href="#extr" x="488" y="150"/><text class="t-sm" x="478" y="153" text-anchor="end">EXTRACT</text>
+    <use href="#extr" x="187" y="261"/>
+    <use href="#frgt" x="187" y="279"/>
+
+    <use href="#elev" x="440" y="68"/>
+    <use href="#elev" x="337" y="276"/>
+    <use href="#elev" x="318" y="301"/>
+
+    <use href="#print" x="480" y="241"/>
+    <use href="#print" x="411" y="291"/>
+    <use href="#print" x="460" y="415"/>
+    <use href="#print" x="525" y="476"/>
+
+    <use href="#fdoor" x="583" y="256"/>
+    <use href="#fdoor" x="679" y="256"/>
+    <use href="#fdoor" x="630" y="178"/>
+    <use href="#fspawn" x="645" y="138"/>
+    <use href="#fspawn" x="693" y="280"/>
+    <use href="#fspawn" x="654" y="304"/>
+
+    <use href="#shop" x="660" y="397"/>
+    <use href="#lock" x="510" y="60"/>
+    <use href="#lock" x="601" y="132"/>
+
+    <!-- callouts -->
+    <text class="t-sm" x="630" y="32" text-anchor="middle">02 &gt; ACCESS A</text>
+    <text class="t-sm" x="783" y="259">01 &gt; ACCESS B</text>
+    <text class="t" x="580" y="506" text-anchor="middle">LOOT ZONE</text>
+    <text class="t-sm" x="662" y="424" text-anchor="middle">THE SHOP</text>
+  </g>
+</svg>
