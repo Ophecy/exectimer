@@ -1,13 +1,26 @@
 # Pyro Hangar Timer
 
 A visual concept for a Star Citizen "Pyro Executive Hangar" cycle tracker: LED
-phase matrix, open/close countdown, and per-zone contested-zone timers with a
-zoomable map, styled as a sci-fi cockpit MFD.
+phase matrix, open/close countdown, and per-zone contested-zone timers with
+zoomable sector plans, styled as a Pyro ASOP terminal — one continuous amber
+screen inside a dark chassis, behind a pane of dirty glass.
 
 The hangar cycle timers, admin sync/config panel, manual support timers, and
-language switching are wired up and persist locally in the browser. Each
-contested zone tab ships with a placeholder map (`public/maps/*.svg`) — swap
-those files for real community map images to fill them in.
+language switching are wired up and persist locally in the browser.
+
+## Sector plans
+
+`public/maps/*.svg` holds one schematic plate per contested zone (Checkmate,
+Orbituary, Ruin Station), drawn as ink line work on the terminal's amber field:
+objectives, accesses, extract/freight elevators, card printers, fuse doors and
+spawners, plus the keyed, timed and elevator-only routes between them. The
+plates are transparent — the amber comes from the page, so the preview modal
+paints its own ground.
+
+They are redrawn from the community contested-zone maps by
+[u/Zane_DragonBorn](https://www.reddit.com/user/Zane_DragonBorn/), credited on
+each plate. Clicking a card opens the plate full size: scroll to zoom, drag to
+pan, click outside or press Escape to close.
 
 Design inspired by the community tool [exectimer.com](https://exectimer.com/)
 (by TurboPolyp) — rebuilt from scratch here as a personal/educational project,
