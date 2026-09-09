@@ -1,0 +1,16 @@
+{
+  "name": "Pyro Hangar Timer",
+  "short_name": "Hangar Timer",
+  "description": "Community timer concept for the Pyro Executive Hangar cycle.",
+  "start_url": "/pyro-hangar-timer/",
+  "display": "standalone",
+  "background_color": "#020b10",
+  "theme_color": "#082838",
+  "icons": [
+    {
+      "src": "/pyro-hangar-timer/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

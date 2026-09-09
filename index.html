@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pyro Hangar Timer — Executive Hangar Cycle Tracker</title>
+    <meta
+      name="description"
+      content="Concept UI for a Star Citizen Pyro Executive Hangar cycle tracker: LED phases, open/close countdown, and contested-zone support timers."
+    />
+    <meta name="theme-color" content="#150f0b" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&display=swap"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#screen" data-i18n="a11y.skip">Skip to terminal</a>
+
+    <div class="terminal">
+      <!-- ============ HARDWARE — title bar ============ -->
+      <header class="titlebar">
+        <svg class="deco" width="300" height="12" viewBox="0 0 300 12" fill="none" aria-hidden="true">
+          <path d="M0 10 L7 3 L150 3" stroke="currentColor" stroke-width="1.5" />
+          <path d="M168 2 L176 6 L168 10" stroke="currentColor" stroke-width="1.5" />
+          <path d="M182 6 L232 6" stroke="currentColor" stroke-width="1.5" />
+          <path d="M240 5 L262 5" stroke="currentColor" stroke-width="3" />
+          <path d="M270 5 L278 5" stroke="currentColor" stroke-width="3" />
+          <path d="M284 5 L288 5" stroke="currentColor" stroke-width="3" />
+        </svg>
+
+        <div class="titlebar-in">
+          <div class="brand">
+            <img src="/favicon.svg" alt="" width="32" height="32" />
+            <div>
+              <h1>PYRO HANGAR TIMER</h1>
+              <p class="lbl-sm" data-i18n="header.subtitle">Pyro System - Contested Zones</p>
+            </div>
+          </div>
+
+          <button class="hud" type="button" id="hud" data-i18n-attr="title:hud.backToCycle" title="Back to hangar cycle">
+            <span class="hud-phase" id="hud-phase">--</span>
+            <span class="hud-leds" id="hud-leds" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i>
+            </span>
+            <span class="lbl" style="color: var(--color-text-3)" data-i18n="panel.opensIn">Hangar opens in</span>
+            <span class="hud-time" id="hud-time">--:--:--</span>
+          </button>
+
+          <div class="controls">
+            <span
+              id="timestamp-badge"
+              class="hw-chip"
+              role="status"
+              aria-live="polite"
+              data-i18n-attr="title:sync.badgeTitle"
+              title="Last timer synchronization"
+              >Last Sync: --</span
+            >
+            <span class="hw-chip hw-chip--solid" data-i18n="header.conceptBadge">Concept Build</span>
+
+            <label class="sr-only" for="lang-select" data-i18n="header.langSelectLabel">Language</label>
+            <select id="lang-select" class="hw-btn"></select>
+
+            <button
+              class="hw-btn"
+              type="button"
+              id="grime-toggle"
+              aria-pressed="true"
+              data-i18n="grime.label"
+              data-i18n-attr="title:grime.title"
+              title="Toggle screen grime"
+            >
+              Grime
+            </button>
+
+            <button
+              class="hw-btn"
+              type="button"
+              id="open-admin-sidebar"
+              aria-expanded="false"
+              aria-controls="admin-controls"
+              data-i18n-attr="aria-label:admin.open,title:admin.open"
+              aria-label="Open admin panel"
+              title="Open admin panel"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span data-i18n="admin.short">Admin</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============ HARDWARE — stage ============ -->
+      <div class="stage">
+        <nav class="rail" data-i18n-attr="aria-label:rail.label" aria-label="Screen sections">
+          <button class="rail-btn" type="button" data-goto="sec-cycle" aria-current="true">
+            <i></i><span data-i18n="rail.cycle">Cycle</span>
+          </button>
+          <button class="rail-btn" type="button" data-goto="sec-maps">
+            <i></i><span data-i18n="rail.maps">Maps</span>
+          </button>
+          <button class="rail-btn" type="button" data-goto="sec-timers">
+            <i></i><span data-i18n="rail.timers">Timers</span>
+          </button>
+          <button class="rail-btn" type="button" data-goto="sec-ref">
+            <i></i><span data-i18n="rail.ref">Ref</span>
+          </button>
+        </nav>
+
+        <div
+          class="scroll"
+          id="scroll"
+          tabindex="0"
+          role="region"
+          data-i18n-attr="aria-label:a11y.screenRegion"
+          aria-label="Terminal screen"
+        >
+          <main class="screen" id="screen">
+            <div class="hazard" aria-hidden="true"></div>
+
+            <!-- ============ 1. HANGAR CYCLE ============ -->
+            <section id="sec-cycle" aria-labelledby="cycle-band-title">
+              <div class="band">
+                <span class="lbl" id="cycle-band-title">HANGAR-TMR &nbsp;/&nbsp; CORE</span>
+                <span class="band-side">
+                  <span class="hw-chip">SYNC-LIVE</span>
+                  <span class="hw-chip hw-chip--solid">PYRO</span>
+                </span>
+              </div>
+
+              <div class="pad">
+                <div class="cycle">
+                  <div>
+                    <p class="eyebrow" data-i18n="phase.prefix">Phase</p>
+                    <p class="phase-name" id="phase-status-total">--</p>
+                    <p class="phase-sub" id="hangar-opening-status">--</p>
+
+                    <div class="leds">
+                      <span class="led" id="led-1">1</span>
+                      <span class="led" id="led-2">2</span>
+                      <span class="led" id="led-3">3</span>
+                      <span class="led" id="led-4">4</span>
+                      <span class="led" id="led-5">5</span>
+                    </div>
+
+                    <div class="meter">
+                      <div class="meter-head">
+                        <span class="lbl" data-i18n="panel.currentLed">Current LED</span>
+                        <span class="val" id="led-time-remaining">--m --s</span>
+                      </div>
+                      <div class="meter-bar">
+                        <span class="track"><i id="led-progress-bar"></i></span>
+                        <span class="meter-pct" id="led-progress-text">0.00%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p class="eyebrow" data-i18n="panel.opensIn">Hangar opens in</p>
+                    <p class="countdown" id="hangar-opening-timer">--:--:--</p>
+
+                    <div class="rule-ink"></div>
+
+                    <div class="meter">
+                      <div class="meter-head">
+                        <span class="lbl" data-i18n="panel.phaseRemaining">Phase Remaining</span>
+                        <span class="val" id="phase-timer">--m --s</span>
+                      </div>
+                      <div class="meter-bar">
+                        <span class="track"><i id="phase-progress-bar"></i></span>
+                        <span class="meter-pct" id="phase-progress-text">0.00%</span>
+                      </div>
+                    </div>
+
+                    <div class="rule-ink"></div>
+
+                    <div class="meter">
+                      <div class="meter-head">
+                        <span class="lbl" data-i18n="panel.totalCycle">Total Cycle</span>
+                        <span class="val" id="total-time-remaining">--:--:--</span>
+                      </div>
+                      <div class="meter-bar">
+                        <span class="track"><i id="total-progress-bar"></i></span>
+                        <span class="meter-pct" id="total-progress-text">0.00%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ============ 2. ZONE MAPS ============ -->
+            <section id="sec-maps" aria-labelledby="maps-title">
+              <div class="band">
+                <span class="lbl">CZONE-MAP &nbsp;/&nbsp; SECTOR PLANS</span>
+                <span class="band-side"><span class="hw-chip" data-i18n="maps.badge">Placeholder plates</span></span>
+              </div>
+
+              <div class="pad">
+                <h2 class="h2" id="maps-title" data-i18n="maps.title">Contested Zone Maps</h2>
+                <p class="lede" data-i18n="maps.desc">
+                  Station plans for each contested zone. Click a plan to open it full size, then scroll to zoom and drag
+                  to pan.
+                </p>
+                <div class="maps" id="czt-maps"></div>
+              </div>
+            </section>
+
+            <!-- ============ 3. ZONE TIMERS ============ -->
+            <section id="sec-timers" aria-labelledby="timers-title">
+              <div class="band">
+                <div class="band-side">
+                  <span class="lbl" id="timers-title">CZONE-SUP &nbsp;/&nbsp; MANUAL TIMERS</span>
+                  <div
+                    class="zone-tabs"
+                    id="czt-zone-tabs"
+                    role="tablist"
+                    data-i18n-attr="aria-label:czt.zoneTabsLabel"
+                    aria-label="Contested zone"
+                  ></div>
+                </div>
+                <div class="band-side">
+                  <span class="hw-chip">PRESET</span>
+                  <span class="hw-chip hw-chip--solid">LOCAL</span>
+                </div>
+              </div>
+
+              <div class="pad" style="padding-bottom: 18px">
+                <h2 class="h2" data-i18n="czt.title">Contested Zone Tools</h2>
+                <p class="lede" data-i18n="czt.desc">
+                  Preset timers for each zone's keycards and compboards — pre-filled with the right duration. Adjust with
+                  +/-, then Start.
+                </p>
+              </div>
+
+              <div id="czt-zones"></div>
+            </section>
+
+            <!-- ============ 4. REFERENCE ============ -->
+            <section id="sec-ref" aria-labelledby="ref-title">
+              <div class="band">
+                <span class="lbl" id="ref-title">REF-DATA &nbsp;/&nbsp; GUIDE + FAQ</span>
+                <span class="band-side">
+                  <span class="hw-chip" id="cycle-summary-chip">CYCLE --</span>
+                </span>
+              </div>
+
+              <div class="pad">
+                <div class="ref">
+                  <!-- guide -->
+                  <div class="ref-card">
+                    <p class="eyebrow" data-i18n="guide.eyebrow">Community reference</p>
+                    <h3 data-i18n="guide.title">Comprehensive Guide</h3>
+                    <p data-i18n="guide.desc">
+                      For detailed information about the Executive Hangar, contested zones, security doors, and all
+                      gameplay mechanics, visit the community guide.
+                    </p>
+                    <a
+                      class="btn btn--key"
+                      href="https://starcitizen.tools/Guide:Executive_Hangars"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span data-i18n="guide.link">Star Citizen Tools guide</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </a>
+                    <p class="fine" data-i18n="guide.includes">
+                      Includes: security doors, keycards, contested zones, compboards, and complete access procedures.
+                    </p>
+                  </div>
+
+                  <!-- FAQ -->
+                  <div>
+                    <h3 class="h2" data-i18n="faq.title">Executive Hangar Timer FAQ</h3>
+                    <p class="lede" data-i18n="faq.desc">
+                      Quick answers about the Pyro Executive Hangar, LED cycle, compboards, and contested-zone support
+                      timers.
+                    </p>
+
+                    <div class="faq">
+                      <details class="qa" open>
+                        <summary data-i18n="faq.q1">What does this tracker show?</summary>
+                        <p data-i18n="faq.a1">
+                          It follows the Executive Hangar cycle in Pyro, showing whether the hangar is closed, opening
+                          soon, ready for compboard insertion, or in the death zone.
+                        </p>
+                      </details>
+                      <details class="qa">
+                        <summary data-i18n="faq.q2">When is the Executive Hangar open?</summary>
+                        <p data-i18n="faq.a2">
+                          The hangar becomes accessible once all five LEDs are green, and stays accessible until the LEDs
+                          finish powering down.
+                        </p>
+                      </details>
+                      <details class="qa">
+                        <summary data-i18n="faq.q3">How does the 5 LED cycle work?</summary>
+                        <p data-i18n="faq.a3">
+                          The red phase charges the LEDs one by one. Once all five are green, the access window opens;
+                          the green phase then counts the LEDs back down.
+                        </p>
+                      </details>
+                      <details class="qa">
+                        <summary data-i18n="faq.q4">What are the manual support timers for?</summary>
+                        <p data-i18n="faq.a4">
+                          They help coordinate contested-zone runs — terminals, tablets, keycards, and compboard routes
+                          around the hangar loop.
+                        </p>
+                      </details>
+                    </div>
+                  </div>
+
+                  <!-- cycle model -->
+                  <div class="ref-card">
+                    <p class="eyebrow" data-i18n="info.timerInfoTitle">Timer Information</p>
+                    <h3 data-i18n="info.hangarInfoTitle">Hangar Information</h3>
+                    <p data-i18n="info.hangarInfoDesc2">
+                      Real-time LED status tracking with approximately ±1s precision after synchronization.
+                    </p>
+
+                    <ul class="info-list">
+                      <li>
+                        <h4 data-i18n="info.powerUpPhase">Power-Up Phase</h4>
+                        <p id="power-up-per-led-info">-- Min per LED</p>
+                        <p id="power-up-total-info">Total: calculating</p>
+                      </li>
+                      <li>
+                        <h4 data-i18n="info.powerDownPhase">Power-Down Phase</h4>
+                        <p id="power-down-per-led-info">-- Min per LED</p>
+                        <p id="power-down-total-info">Total: calculating</p>
+                      </li>
+                      <li>
+                        <h4 data-i18n="info.hangarAccessTitle">Hangar Access</h4>
+                        <p data-i18n="info.accessDesc1">Accessible when all 5 LEDs are green</p>
+                        <p data-i18n="info.accessDesc2">Remains accessible until all LEDs turn red</p>
+                      </li>
+                      <li>
+                        <h4 data-i18n="panel.totalCycle">Total Cycle</h4>
+                        <p id="total-cycle-value">Calculating</p>
+                        <p id="total-cycle-cooldown">+ 5 Min cooldown after last green light</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div class="hazard" aria-hidden="true"></div>
+          </main>
+        </div>
+      </div>
+
+      <!-- ============ HARDWARE — status bar ============ -->
+      <footer class="statusbar">
+        <div class="statusbar-in">
+          <span class="live lbl-sm"><i></i><span data-i18n="status.terminalOnline">Terminal online</span></span>
+          <span class="lbl-sm">
+            Pyro Hangar Timer &nbsp;·&nbsp; <span data-i18n="footer.pyroSystem">Pyro System</span>
+          </span>
+          <span class="lbl-sm">
+            <span data-i18n="footer.fanMade">Fan-made concept</span> &nbsp;·&nbsp; ©
+            <span id="copyright-year">2026</span>
+          </span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ============ ADMIN DRAWER ============ -->
+    <div class="scrim" id="admin-scrim"></div>
+    <aside
+      id="admin-controls"
+      class="drawer"
+      role="region"
+      aria-hidden="true"
+      aria-labelledby="admin-controls-title"
+    >
+      <div class="drawer-head">
+        <h2 id="admin-controls-title" data-i18n="admin.title">Admin Control</h2>
+        <button
+          class="hw-btn"
+          type="button"
+          id="close-admin-sidebar"
+          data-i18n-attr="aria-label:admin.close"
+          aria-label="Close admin panel"
+          data-i18n="admin.closeShort"
+        >
+          Close
+        </button>
+      </div>
+
+      <div class="drawer-body">
+        <div class="card">
+          <h3 data-i18n="admin.syncTitle">Synchronization</h3>
+          <button class="hw-btn" type="button" id="admin-sync-btn" data-i18n="admin.syncButton">Sync</button>
+          <p class="sync-note" data-i18n="admin.syncNote">Realigns the cycle anchor on the current moment.</p>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="admin.cycleTimingTitle">Cycle Timing</h3>
+          <label class="field">
+            <span data-i18n="admin.powerUpLabel">Power-Up min/LED</span>
+            <input id="admin-power-up-input" type="number" min="1" step="1" />
+          </label>
+          <label class="field">
+            <span data-i18n="admin.powerDownLabel">Power-Down min/LED</span>
+            <input id="admin-power-down-input" type="number" min="1" step="1" />
+          </label>
+          <label class="field">
+            <span data-i18n="admin.cooldownLabel">Cooldown (min)</span>
+            <input id="admin-cooldown-input" type="number" min="1" step="1" />
+          </label>
+          <button class="hw-btn" type="button" id="admin-restore-defaults-btn" data-i18n="admin.restoreDefaults">
+            Restore defaults
+          </button>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="admin.timerControlsTitle">Timer Controls</h3>
+          <div class="btn-grid">
+            <button class="hw-btn" type="button" id="admin-start-timer-btn" data-i18n="admin.startTimer">
+              Start Timer
+            </button>
+            <button class="hw-btn" type="button" id="admin-reset-timer-btn" data-i18n="admin.resetTimer">
+              Reset Timer
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============================================================
+         GRIME — last in the document, over everything.
+         ============================================================ -->
+    <div class="grime" aria-hidden="true">
+      <svg width="0" height="0" style="position: absolute">
+        <defs>
+          <filter id="f-stain" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.0035 0.0062" numOctaves="5" seed="17" />
+            <feColorMatrix
+              type="matrix"
+              values="0 0 0 0 0.09  0 0 0 0 0.05  0 0 0 0 0.018  1.9 0 0 0 -0.72"
+            />
+            <feComponentTransfer><feFuncA type="table" tableValues="0 0 0.12 0.48 0.85 1" /></feComponentTransfer>
+            <feGaussianBlur stdDeviation="2.5" />
+          </filter>
+
+          <filter id="f-mid" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.017 0.024" numOctaves="4" seed="41" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0.11  0 0 0 0 0.06  0 0 0 0 0.02  2.4 0 0 0 -1.15" />
+            <feComponentTransfer><feFuncA type="table" tableValues="0 0 0 0.3 0.9" /></feComponentTransfer>
+            <feGaussianBlur stdDeviation="1.1" />
+          </filter>
+
+          <filter id="f-drip" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.62 0.0022" numOctaves="3" seed="93" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0.10  0 0 0 0 0.055  0 0 0 0 0.02  2.6 0 0 0 -1.35" />
+            <feGaussianBlur stdDeviation="0.7" />
+          </filter>
+
+          <filter id="f-wipe" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.0018 0.42" numOctaves="2" seed="5" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0.10  0 0 0 0 0.06  0 0 0 0 0.025  2.2 0 0 0 -1.25" />
+            <feGaussianBlur stdDeviation="1.4" />
+          </filter>
+
+          <filter id="f-dust" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB">
+            <feTurbulence type="turbulence" baseFrequency="0.42" numOctaves="2" seed="61" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0.06  0 0 0 0 0.035  0 0 0 0 0.012  3.4 0 0 0 -2.3" />
+            <feComponentTransfer><feFuncA type="discrete" tableValues="0 0 0 0 0 0.55 1" /></feComponentTransfer>
+          </filter>
+
+          <filter id="f-light" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.0045 0.0028" numOctaves="4" seed="29" />
+            <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 0.97  0 0 0 0 0.88  2.6 0 0 0 -1.72" />
+            <feGaussianBlur stdDeviation="9" />
+          </filter>
+
+          <filter id="f-grain" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="3" />
+            <feColorMatrix type="saturate" values="0" />
+          </filter>
+        </defs>
+      </svg>
+
+      <svg class="g-stain"><rect width="100%" height="100%" filter="url(#f-stain)" /></svg>
+      <svg class="g-mid"><rect width="100%" height="100%" filter="url(#f-mid)" /></svg>
+      <svg class="g-drip"><rect width="100%" height="100%" filter="url(#f-drip)" /></svg>
+      <svg class="g-wipe"><rect width="100%" height="100%" filter="url(#f-wipe)" /></svg>
+      <svg class="g-dust"><rect width="100%" height="100%" filter="url(#f-dust)" /></svg>
+      <svg class="g-grain"><rect width="100%" height="100%" filter="url(#f-grain)" /></svg>
+    </div>
+
+    <div class="grime-light" aria-hidden="true">
+      <svg class="g-light"><rect width="100%" height="100%" filter="url(#f-light)" /></svg>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
