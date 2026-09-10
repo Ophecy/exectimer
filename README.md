@@ -47,6 +47,17 @@ npm run preview
 ## Deploy
 
 Pushing to `main` builds the site and publishes it to GitHub Pages via
-`.github/workflows/deploy.yml`. The Vite `base` in `vite.config.ts` is set to
-`/pyro-hangar-timer/` to match the Pages URL — update it if the repo is
-renamed.
+`.github/workflows/deploy.yml` (Pages source must be set to *GitHub Actions*).
+
+A project site is served from `https://<user>.github.io/<repo>/`, so the Vite
+`base` has to match the repository name — otherwise every asset 404s and the
+page renders as bare HTML with no CSS or timers. `vite.config.ts` reads it back
+from `GITHUB_REPOSITORY` in CI, so a rename can't break the deploy; outside CI
+the base stays `/` for `npm run dev`. Anything under `public/` is copied
+verbatim and never rewritten, so reference those files relatively (`./`).
+
+To reproduce a Pages build locally:
+
+```sh
+GITHUB_REPOSITORY=owner/repo npm run build && npm run preview
+```
