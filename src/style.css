@@ -62,7 +62,10 @@ body {
   overflow: hidden;
 }
 
+/* mobile browser chrome shrinks the visual viewport: dvh keeps the one
+   screen exactly one screen while the URL bar slides away */
 body {
+  height: 100dvh;
   margin: 0;
   background: var(--color-void);
   color: var(--color-text);
@@ -769,7 +772,7 @@ select.hw-btn {
    span the full screen width instead of leaving a gap at the right edge */
 .czt-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(258px, 100%), 1fr));
   gap: 14px;
   padding: 0 var(--gut) 40px;
 }
@@ -1348,6 +1351,206 @@ body[data-grime="off"] .grime-light {
   box-shadow:
     inset 0 0 0 1px rgba(0, 0, 0, 0.55),
     inset 0 0 70px rgba(5, 3, 2, 0.4);
+}
+
+/* ============================================================
+   NARROW SCREENS — still one terminal, one pane of glass.
+   The chassis stays: title bar on top, status bar at the bottom.
+   Only the rail turns: a vertical rail costs 76px of a 375px screen,
+   so it lies down as a tab strip under the title bar.
+   ============================================================ */
+
+@media (max-width: 860px) {
+  :root {
+    --gut: 16px;
+  }
+
+  /* the title bar keeps the identity and the controls; the readout is
+     redundant once the whole screen is one column away */
+  .deco,
+  .hud,
+  .controls .hw-chip--solid {
+    display: none;
+  }
+
+  /* the sync badge is a live region: take its pixels, keep its voice */
+  .controls #timestamp-badge {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .titlebar-in {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 16px 11px;
+  }
+
+  .brand {
+    gap: 10px;
+  }
+
+  .brand img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .brand h1 {
+    font-size: 17px;
+  }
+
+  .controls {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .stage {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rail {
+    position: static;
+    width: auto;
+    padding: 0;
+    flex-direction: row;
+    border-right: none;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .rail-btn {
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+    gap: 7px;
+    padding: 12px 4px;
+  }
+
+  .rail-btn[aria-current="true"] {
+    background:
+      linear-gradient(0deg, var(--color-amber) 0 3px, transparent 3px),
+      var(--color-raised);
+  }
+
+  .scroll {
+    height: auto;
+    flex: 1;
+    min-height: 0;
+    margin-left: 0;
+  }
+
+  .band {
+    padding: 10px var(--gut);
+    gap: 10px;
+  }
+
+  .pad {
+    padding: 22px var(--gut) 28px;
+  }
+
+  .cycle {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+  }
+
+  .phase-name {
+    font-size: 32px;
+  }
+
+  .countdown {
+    font-size: clamp(38px, 13vw, 64px);
+  }
+
+  .h2 {
+    font-size: 21px;
+  }
+
+  .leds {
+    gap: 8px;
+    margin: 20px 0;
+  }
+
+  /* five fixed 62px cells overflow a phone: let them share the width */
+  .led {
+    flex: 1;
+    width: auto;
+    height: auto;
+    aspect-ratio: 1;
+    font-size: 17px;
+  }
+
+  .meter-head .val {
+    font-size: 17px;
+  }
+
+  .maps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .zone-tabs {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .czt-grid {
+    padding: 0 var(--gut) 28px;
+  }
+
+  /* thumb-sized targets */
+  .czt-stepper-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .czt-card-actions .btn {
+    padding: 11px 8px;
+  }
+
+  .ref-card {
+    padding: 18px;
+  }
+
+  .statusbar {
+    padding: 8px 16px;
+  }
+
+  .statusbar-in {
+    gap: 6px 14px;
+  }
+
+  .drawer {
+    width: 100%;
+    border-left: none;
+  }
+
+  .czt-map-modal-img {
+    max-width: 96vw;
+    max-height: 84vh;
+  }
+
+  .czt-map-modal-close {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+@media (max-width: 560px) {
+  /* the status bar is a one-line readout, not a footer: keep the live
+     state and the credit, drop the middle restatement of the title */
+  .statusbar-in > :nth-child(2) {
+    display: none;
+  }
+
+  .rail-btn span {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -441,9 +441,36 @@ let mapDragStartX = 0
 let mapDragStartY = 0
 let mapDragStartTx = 0
 let mapDragStartTy = 0
+const mapPointers = new Map<number, { x: number; y: number }>()
+let mapPinchStartDist = 0
+let mapPinchStartScale = 1
 
 function applyMapTransform(): void {
   if (mapModalImg) mapModalImg.style.transform = `translate(${mapTx}px, ${mapTy}px) scale(${mapScale})`
+}
+
+function setMapScale(next: number): void {
+  mapScale = Math.min(6, Math.max(1, next))
+  if (mapScale === 1) {
+    mapTx = 0
+    mapTy = 0
+  }
+  applyMapTransform()
+}
+
+/** Distance between the first two live pointers — the pinch span. */
+function mapPinchDistance(): number {
+  const [a, b] = [...mapPointers.values()]
+  return Math.hypot(a.x - b.x, a.y - b.y)
+}
+
+/** Pans from wherever the given pointer currently is. */
+function beginMapDrag(x: number, y: number): void {
+  mapDragging = true
+  mapDragStartX = x
+  mapDragStartY = y
+  mapDragStartTx = mapTx
+  mapDragStartTy = mapTy
 }
 
 function buildMapModal(doc: Document): HTMLElement {
@@ -469,26 +496,36 @@ function buildMapModal(doc: Document): HTMLElement {
     'wheel',
     (e) => {
       e.preventDefault()
-      mapScale = Math.min(6, Math.max(1, mapScale * (e.deltaY < 0 ? 1.15 : 1 / 1.15)))
-      if (mapScale === 1) {
-        mapTx = 0
-        mapTy = 0
-      }
-      applyMapTransform()
+      setMapScale(mapScale * (e.deltaY < 0 ? 1.15 : 1 / 1.15))
     },
     { passive: false },
   )
 
   viewport.addEventListener('pointerdown', (e) => {
-    mapDragging = true
-    mapDragged = false
-    mapDragStartX = e.clientX
-    mapDragStartY = e.clientY
-    mapDragStartTx = mapTx
-    mapDragStartTy = mapTy
+    mapPointers.set(e.pointerId, { x: e.clientX, y: e.clientY })
     viewport.setPointerCapture(e.pointerId)
+
+    // two fingers: pinch instead of pan — a touch screen has no wheel
+    if (mapPointers.size === 2) {
+      mapDragging = false
+      mapDragged = true
+      mapPinchStartDist = mapPinchDistance()
+      mapPinchStartScale = mapScale
+      return
+    }
+
+    mapDragged = false
+    beginMapDrag(e.clientX, e.clientY)
   })
   viewport.addEventListener('pointermove', (e) => {
+    if (!mapPointers.has(e.pointerId)) return
+    mapPointers.set(e.pointerId, { x: e.clientX, y: e.clientY })
+
+    if (mapPointers.size >= 2) {
+      if (mapPinchStartDist > 0) setMapScale(mapPinchStartScale * (mapPinchDistance() / mapPinchStartDist))
+      return
+    }
+
     if (!mapDragging) return
     const dx = e.clientX - mapDragStartX
     const dy = e.clientY - mapDragStartY
@@ -497,12 +534,17 @@ function buildMapModal(doc: Document): HTMLElement {
     mapTy = mapDragStartTy + dy
     applyMapTransform()
   })
-  viewport.addEventListener('pointerup', () => {
-    mapDragging = false
-  })
-  viewport.addEventListener('pointercancel', () => {
-    mapDragging = false
-  })
+
+  /** A lifted finger ends the pinch; a remaining one keeps panning from where it is. */
+  const endPointer = (e: PointerEvent) => {
+    mapPointers.delete(e.pointerId)
+    if (mapPointers.size < 2) mapPinchStartDist = 0
+    const [rest] = [...mapPointers.values()]
+    if (rest) beginMapDrag(rest.x, rest.y)
+    else mapDragging = false
+  }
+  viewport.addEventListener('pointerup', endPointer)
+  viewport.addEventListener('pointercancel', endPointer)
 
   // clicking the backdrop closes; a pan that ends off the plate does not
   viewport.addEventListener('click', (e) => {
@@ -523,6 +565,9 @@ function openMapModal(doc: Document, zone: ZoneKey): void {
   if (!mapModalImg) return
   mapModalImg.src = ZONE_MAP_SRC[zone]
   mapModalImg.alt = ZONE_NAMES[zone]
+  mapPointers.clear()
+  mapPinchStartDist = 0
+  mapDragging = false
   mapScale = 1
   mapTx = 0
   mapTy = 0
