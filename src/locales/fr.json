@@ -103,5 +103,10 @@
   "type.compboard": "Compboard",
   "czt.zoneTabsLabel": "Zone contestée",
   "guide.eyebrow": "Référence communautaire",
-  "guide.link": "Guide Star Citizen Tools"
+  "guide.link": "Guide Star Citizen Tools",
+  "enlist.eyebrow": "Nouveaux citoyens",
+  "enlist.title": "Code de parrainage",
+  "enlist.desc": "Créer un compte Star Citizen avec un code de parrainage offre 5 000 UEC supplémentaires au départ.",
+  "enlist.linkLabel": "S'enrôler avec le code de parrainage STAR-5Z9M-HBG5",
+  "enlist.fine": "Colle le code dans le champ de parrainage à l'inscription, ou suis le lien ci-dessus."
 }
