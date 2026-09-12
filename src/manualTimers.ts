@@ -431,6 +431,7 @@ export function initZoneMaps(doc: Document): void {
 
 let mapModal: HTMLElement | null = null
 let mapModalImg: HTMLImageElement | null = null
+let mapModalViewport: HTMLElement | null = null
 let mapOpenedFrom: ZoneKey | null = null
 let mapScale = 1
 let mapTx = 0
@@ -473,9 +474,32 @@ function beginMapDrag(x: number, y: number): void {
   mapDragStartTy = mapTy
 }
 
+/**
+ * Transform that lands the modal plate exactly on the zone card's thumbnail —
+ * the state the plate grows out of on open and collapses back to on close.
+ * The plate is flex-centred in a full-viewport box, so its untransformed box
+ * is derived from its layout size rather than measured, which keeps the live
+ * pan/zoom transform out of the maths.
+ */
+function collapsedMapTransform(zone: ZoneKey): string | null {
+  const card = document.querySelector<HTMLImageElement>(`[data-zone-map="${zone}"] img`)
+  if (!card || !mapModalImg) return null
+  const from = card.getBoundingClientRect()
+  const w = mapModalImg.offsetWidth
+  const h = mapModalImg.offsetHeight
+  if (!from.width || !w || !h) return null
+  const scale = from.width / w
+  const left = (window.innerWidth - w) / 2
+  const top = (window.innerHeight - h) / 2
+  return `translate(${from.left - scale * left}px, ${from.top - scale * top}px) scale(${scale})`
+}
+
+function prefersReducedMotion(): boolean {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
 function buildMapModal(doc: Document): HTMLElement {
   const modal = el(doc, 'div', 'czt-map-modal')
-  modal.style.display = 'none'
 
   const closeBtn = el(doc, 'button', 'czt-map-modal-close', '×')
   closeBtn.type = 'button'
@@ -483,6 +507,7 @@ function buildMapModal(doc: Document): HTMLElement {
   closeBtn.addEventListener('click', () => closeMapModal())
 
   const viewport = el(doc, 'div', 'czt-map-modal-viewport')
+  mapModalViewport = viewport
 
   const img = doc.createElement('img')
   img.className = 'czt-map-modal-img'
@@ -572,14 +597,43 @@ function openMapModal(doc: Document, zone: ZoneKey): void {
   mapTx = 0
   mapTy = 0
   applyMapTransform()
-  modal.style.display = 'flex'
+  // reflow read: a class added in the same frame as the append would not transition
+  void modal.offsetWidth
+  modal.classList.add('is-open')
   mapOpenedFrom = zone
+
+  // FLIP: start collapsed on the card, then release to the plate's real box
+  const grow = () => {
+    const viewport = mapModalViewport
+    if (!viewport) return
+    viewport.style.visibility = ''
+    const collapsed = prefersReducedMotion() ? null : collapsedMapTransform(zone)
+    if (collapsed) {
+      viewport.style.transition = 'none'
+      viewport.style.transform = collapsed
+      void viewport.offsetWidth
+      viewport.style.transition = ''
+    }
+    viewport.style.transform = ''
+  }
+  if (mapModalImg.complete) grow()
+  else {
+    // an unmeasurable plate would flash at full size before collapsing
+    if (mapModalViewport) mapModalViewport.style.visibility = 'hidden'
+    mapModalImg.addEventListener('load', grow, { once: true })
+  }
+
   modal.querySelector<HTMLElement>('.czt-map-modal-close')?.focus()
 }
 
 function closeMapModal(): void {
-  if (!mapModal || mapModal.style.display === 'none') return
-  mapModal.style.display = 'none'
+  if (!mapModal || !mapModal.classList.contains('is-open')) return
+  if (mapModalViewport && mapOpenedFrom && !prefersReducedMotion()) {
+    // a live pan/zoom would collapse the plate toward the wrong box
+    setMapScale(1)
+    mapModalViewport.style.transform = collapsedMapTransform(mapOpenedFrom) ?? ''
+  }
+  mapModal.classList.remove('is-open')
   if (mapOpenedFrom) {
     document.querySelector<HTMLElement>(`[data-zone-map="${mapOpenedFrom}"]`)?.focus()
     mapOpenedFrom = null
