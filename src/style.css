@@ -1235,7 +1235,8 @@ body[data-admin="open"] .scrim {
 .czt-map-modal {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  /* under the grime (100): one pane of glass, the plate is behind it too */
+  z-index: 90;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1349,6 +1350,13 @@ body[data-admin="open"] .scrim {
   position: fixed;
   inset: 0;
   pointer-events: none;
+  transition: opacity var(--map-open-ms) ease;
+}
+
+/* the open map plate is read closely: the same glass, wiped down */
+body[data-map-open="on"] .grime,
+body[data-map-open="on"] .grime-light {
+  opacity: 0.4;
 }
 
 .grime {

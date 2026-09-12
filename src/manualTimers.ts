@@ -600,6 +600,7 @@ function openMapModal(doc: Document, zone: ZoneKey): void {
   // reflow read: a class added in the same frame as the append would not transition
   void modal.offsetWidth
   modal.classList.add('is-open')
+  doc.body.dataset.mapOpen = 'on'
   mapOpenedFrom = zone
 
   // FLIP: start collapsed on the card, then release to the plate's real box
@@ -634,6 +635,7 @@ function closeMapModal(): void {
     mapModalViewport.style.transform = collapsedMapTransform(mapOpenedFrom) ?? ''
   }
   mapModal.classList.remove('is-open')
+  delete document.body.dataset.mapOpen
   if (mapOpenedFrom) {
     document.querySelector<HTMLElement>(`[data-zone-map="${mapOpenedFrom}"]`)?.focus()
     mapOpenedFrom = null
