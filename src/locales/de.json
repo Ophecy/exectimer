@@ -103,5 +103,10 @@
   "type.compboard": "Compboard",
   "czt.zoneTabsLabel": "Umkämpfte Zone",
   "guide.eyebrow": "Community-Referenz",
-  "guide.link": "Star Citizen Tools Leitfaden"
+  "guide.link": "Star Citizen Tools Leitfaden",
+  "enlist.eyebrow": "Neue Bürger",
+  "enlist.title": "Empfehlungscode",
+  "enlist.desc": "Wer ein Star-Citizen-Konto mit einem Empfehlungscode erstellt, erhält 5.000 UEC zusätzlich zum Start.",
+  "enlist.linkLabel": "Mit dem Empfehlungscode STAR-5Z9M-HBG5 anmelden",
+  "enlist.fine": "Den Code bei der Anmeldung ins Empfehlungsfeld einfügen oder dem Link oben folgen."
 }

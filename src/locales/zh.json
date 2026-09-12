@@ -103,5 +103,10 @@
   "type.compboard": "计算板",
   "czt.zoneTabsLabel": "争夺区",
   "guide.eyebrow": "社区资料",
-  "guide.link": "Star Citizen Tools 指南"
+  "guide.link": "Star Citizen Tools 指南",
+  "enlist.eyebrow": "新公民",
+  "enlist.title": "推荐码",
+  "enlist.desc": "使用推荐码创建星际公民账号，开局可额外获得 5,000 UEC。",
+  "enlist.linkLabel": "使用推荐码 STAR-5Z9M-HBG5 注册",
+  "enlist.fine": "注册时把推荐码填入推荐码栏，或直接点击上方链接。"
 }

@@ -103,5 +103,10 @@
   "type.compboard": "Compboard",
   "czt.zoneTabsLabel": "Zona contestada",
   "guide.eyebrow": "Referência da comunidade",
-  "guide.link": "Guia Star Citizen Tools"
+  "guide.link": "Guia Star Citizen Tools",
+  "enlist.eyebrow": "Novos cidadãos",
+  "enlist.title": "Código de indicação",
+  "enlist.desc": "Criar uma conta de Star Citizen com um código de indicação concede 5.000 UEC extra para começar.",
+  "enlist.linkLabel": "Alistar-se com o código de indicação STAR-5Z9M-HBG5",
+  "enlist.fine": "Cole o código no campo de indicação ao se alistar, ou siga o link acima."
 }

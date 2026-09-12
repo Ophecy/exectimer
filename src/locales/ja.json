@@ -103,5 +103,10 @@
   "type.compboard": "コンプボード",
   "czt.zoneTabsLabel": "係争ゾーン",
   "guide.eyebrow": "コミュニティ資料",
-  "guide.link": "Star Citizen Tools ガイド"
+  "guide.link": "Star Citizen Tools ガイド",
+  "enlist.eyebrow": "新規シチズン",
+  "enlist.title": "リファラルコード",
+  "enlist.desc": "リファラルコードを使って Star Citizen のアカウントを作成すると、開始時に 5,000 UEC が追加されます。",
+  "enlist.linkLabel": "リファラルコード STAR-5Z9M-HBG5 で登録する",
+  "enlist.fine": "登録時にリファラル欄へコードを貼り付けるか、上のリンクから進んでください。"
 }

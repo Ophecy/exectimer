@@ -103,5 +103,10 @@
   "type.compboard": "Compboard",
   "czt.zoneTabsLabel": "Sporna strefa",
   "guide.eyebrow": "Źródło społeczności",
-  "guide.link": "Przewodnik Star Citizen Tools"
+  "guide.link": "Przewodnik Star Citizen Tools",
+  "enlist.eyebrow": "Nowi obywatele",
+  "enlist.title": "Kod polecający",
+  "enlist.desc": "Założenie konta Star Citizen z kodem polecającym daje na start dodatkowe 5000 UEC.",
+  "enlist.linkLabel": "Zarejestruj się z kodem polecającym STAR-5Z9M-HBG5",
+  "enlist.fine": "Wklej kod w pole polecenia podczas rejestracji albo skorzystaj z linku powyżej."
 }

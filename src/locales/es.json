@@ -103,5 +103,10 @@
   "type.compboard": "Compboard",
   "czt.zoneTabsLabel": "Zona en disputa",
   "guide.eyebrow": "Referencia de la comunidad",
-  "guide.link": "Guía de Star Citizen Tools"
+  "guide.link": "Guía de Star Citizen Tools",
+  "enlist.eyebrow": "Nuevos ciudadanos",
+  "enlist.title": "Código de referido",
+  "enlist.desc": "Crear una cuenta de Star Citizen con un código de referido otorga 5.000 UEC adicionales al empezar.",
+  "enlist.linkLabel": "Alistarse con el código de referido STAR-5Z9M-HBG5",
+  "enlist.fine": "Pega el código en el campo de referido al alistarte, o sigue el enlace de arriba."
 }

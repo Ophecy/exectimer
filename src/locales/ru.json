@@ -103,5 +103,10 @@
   "type.compboard": "Компборд",
   "czt.zoneTabsLabel": "Спорная зона",
   "guide.eyebrow": "Справка сообщества",
-  "guide.link": "Руководство Star Citizen Tools"
+  "guide.link": "Руководство Star Citizen Tools",
+  "enlist.eyebrow": "Новым гражданам",
+  "enlist.title": "Реферальный код",
+  "enlist.desc": "Создание аккаунта Star Citizen с реферальным кодом даёт 5 000 UEC дополнительно на старте.",
+  "enlist.linkLabel": "Зарегистрироваться с реферальным кодом STAR-5Z9M-HBG5",
+  "enlist.fine": "Вставьте код в поле реферала при регистрации или перейдите по ссылке выше."
 }

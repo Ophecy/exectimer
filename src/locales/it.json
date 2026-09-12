@@ -103,5 +103,10 @@
   "type.compboard": "Compboard",
   "czt.zoneTabsLabel": "Zona contesa",
   "guide.eyebrow": "Riferimento della community",
-  "guide.link": "Guida Star Citizen Tools"
+  "guide.link": "Guida Star Citizen Tools",
+  "enlist.eyebrow": "Nuovi cittadini",
+  "enlist.title": "Codice referral",
+  "enlist.desc": "Creare un account Star Citizen con un codice referral garantisce 5.000 UEC extra all'inizio.",
+  "enlist.linkLabel": "Arruolati con il codice referral STAR-5Z9M-HBG5",
+  "enlist.fine": "Incolla il codice nel campo referral durante l'iscrizione, oppure segui il link qui sopra."
 }
