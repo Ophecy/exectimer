@@ -7,26 +7,28 @@
     .t{font-size:11px;font-weight:700;letter-spacing:.08em}
     .t-sm{font-size:9.5px;font-weight:700;letter-spacing:.07em}
     .t-xs{font-size:8px;font-weight:700;letter-spacing:.06em}
+    .t-pl{font-size:6px;font-weight:700;letter-spacing:.08em}
     .dim{fill:rgba(21,15,10,.6)}
     .cream{fill:#FBE9C8}
-    .rm{fill:rgba(21,15,10,.07);stroke:#150F0A;stroke-width:1.3}
+    .env{fill:rgba(21,15,10,.07);stroke:#150F0A;stroke-width:.9;stroke-linejoin:round}
+    .rm{fill:rgba(21,15,10,.09);stroke:rgba(21,15,10,.45);stroke-width:.6;stroke-linejoin:round}
     .rm2{fill:rgba(21,15,10,.15);stroke:#150F0A;stroke-width:1.3}
     .hair{stroke:rgba(21,15,10,.3);stroke-width:1;fill:none}
-    .p{fill:none;stroke:#150F0A;stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round}
-    .k-timer{fill:none;stroke:#FBE9C8;stroke-width:2;stroke-dasharray:2.5 3.5}
-    .k-uniq{fill:none;stroke:#FBE9C8;stroke-width:2.2;stroke-dasharray:.1 5.5;stroke-linecap:round}
+    .lead{stroke:#150F0A;stroke-width:1;fill:none}
+    .halo{paint-order:stroke;stroke:#EFA53C;stroke-width:3px;stroke-linejoin:round}
+    .p{fill:none;stroke:#150F0A;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+    .k-timer{fill:none;stroke:#FBE9C8;stroke-width:1.1}
+    .k-uniq{fill:none;stroke:#FBE9C8;stroke-width:2;stroke-dasharray:.1 5;stroke-linecap:round}
   </style>
 
   <defs>
     <g id="obj"><path d="M0,-8 8,0 0,8 -8,0Z" fill="#FBE9C8" stroke="#150F0A" stroke-width="1.6"/></g>
     <g id="bolt"><path d="M1.8,-3.6 -2.2,.6 0,.6 -1.8,3.6 2.2,-.6 0,-.6Z" fill="#FBE9C8"/></g>
     <g id="fdoor"><circle r="6" fill="#150F0A"/><use href="#bolt"/></g>
-    <g id="fspawn"><rect x="-6" y="-6" width="12" height="12" fill="#150F0A"/><use href="#bolt"/></g>
     <g id="print"><rect x="-6.5" y="-5.5" width="13" height="11" fill="#FBE9C8" stroke="#150F0A" stroke-width="1.4"/><path d="M-3.5,-2h7M-3.5,0h7M-3.5,2h7" stroke="#150F0A" stroke-width="1.1"/></g>
     <g id="extr"><circle r="6.5" fill="#150F0A"/><path d="M0,-4 3,-1 -3,-1Z M0,4 3,1 -3,1Z" fill="#FBE9C8"/></g>
     <g id="frgt"><circle r="6.5" fill="#150F0A"/><rect x="-3.2" y="-3" width="6.4" height="6" fill="#FBE9C8"/></g>
-    <g id="lock"><rect x="-1.2" y="-7" width="2.4" height="14" fill="#150F0A"/></g>
-    <g id="arrow"><path d="M-5,-5.5 5.5,0 -5,5.5Z" fill="#150F0A"/></g>
+    <g id="oneway"><circle r="6" fill="#FBE9C8" stroke="#150F0A" stroke-width="1.6"/><path d="M-2,-3.4 3.6,0 -2,3.4Z" fill="#150F0A"/></g>
   </defs>
 
   <!-- ============ LEGEND COLUMN ============ -->
@@ -36,31 +38,29 @@
     <path class="hair" d="M24,54H160"/>
 
     <use href="#obj" x="32" y="72"/><text class="t-sm" x="48" y="75.5">OBJECTIVE</text>
-    <use href="#fspawn" x="32" y="92"/><text class="t-sm" x="48" y="95.5">FUSE SPAWNER</text>
-    <use href="#fdoor" x="32" y="112"/><text class="t-sm" x="48" y="115.5">FUSE DOOR</text>
-    <use href="#print" x="32" y="132"/><text class="t-sm" x="48" y="135.5">CARD PRINTER</text>
-    <use href="#lock" x="32" y="152"/><text class="t-sm" x="48" y="155.5">SPAWN LOCKER</text>
-    <use href="#extr" x="32" y="172"/><text class="t-sm" x="48" y="175.5">EXTRACT ELEVATOR</text>
-    <use href="#frgt" x="32" y="192"/><text class="t-sm" x="48" y="195.5">FREIGHT ELEVATOR</text>
-    <use href="#arrow" x="32" y="212"/><text class="t-sm" x="48" y="215.5">ONE-WAY DOOR</text>
+    <use href="#fdoor" x="32" y="92"/><text class="t-sm" x="48" y="95.5">FUSE DOOR</text>
+    <use href="#print" x="32" y="112"/><text class="t-sm" x="48" y="115.5">CARD PRINTER</text>
+    <use href="#extr" x="32" y="132"/><text class="t-sm" x="48" y="135.5">EXTRACT ELEVATOR</text>
+    <use href="#frgt" x="32" y="152"/><text class="t-sm" x="48" y="155.5">FREIGHT ELEVATOR</text>
+    <use href="#oneway" x="32" y="172"/><text class="t-sm" x="48" y="175.5">ONE-WAY DOOR</text>
 
-    <path class="hair" d="M24,228H160"/>
+    <path class="hair" d="M24,188H160"/>
 
-    <path class="p" d="M24,246H44"/><text class="t-sm" x="52" y="249.5">FREE PATH</text>
-    <path class="p" d="M24,266H44"/><path class="k-timer" d="M24,266H44"/><text class="t-sm" x="52" y="269.5">OPENS ON A TIMER</text>
-    <path class="p" d="M24,286H44"/><path class="k-uniq" d="M24,286H44"/><text class="t-sm" x="52" y="289.5">UNIQUE KEY PATH</text>
+    <path class="p" d="M24,206H44"/><text class="t-sm" x="52" y="209.5">FREE PATH</text>
+    <path class="p" d="M24,226H44"/><path class="k-timer" d="M24,226H44"/><text class="t-sm" x="52" y="229.5">OPENS ON A TIMER</text>
+    <path class="p" d="M24,246H44"/><path class="k-uniq" d="M24,246H44"/><text class="t-sm" x="52" y="249.5">UNIQUE KEY PATH</text>
 
-    <path class="hair" d="M24,306H160"/>
-    <text class="t-sm" x="24" y="324">UNIQUE KEYS</text>
-    <text class="t-xs dim" x="24" y="338">WASTELAND · LAST RESORT</text>
-    <text class="t-xs dim" x="24" y="350">CRYPT — PRINTED ON SITE</text>
+    <path class="hair" d="M24,266H160"/>
+    <text class="t-sm" x="24" y="284">UNIQUE KEYS</text>
+    <text class="t-xs dim" x="24" y="298">WASTELAND · LAST RESORT</text>
+    <text class="t-xs dim" x="24" y="310">CRYPT — PRINTED ON SITE</text>
 
-    <path class="hair" d="M24,366H160"/>
-    <text class="t-sm" x="24" y="384">SPAWN INDEX</text>
-    <rect class="rm2" x="24" y="392" width="136" height="16"/>
-    <text class="t-xs" x="32" y="403">FIRERATS · SITEWIDE</text>
-    <rect class="rm2" x="24" y="412" width="136" height="16"/>
-    <text class="t-xs" x="32" y="423">KOPION · SITEWIDE</text>
+    <path class="hair" d="M24,326H160"/>
+    <text class="t-sm" x="24" y="344">SPAWN INDEX</text>
+    <rect class="rm2" x="24" y="352" width="136" height="16"/>
+    <text class="t-xs" x="32" y="363">FIRERATS · SITEWIDE</text>
+    <rect class="rm2" x="24" y="372" width="136" height="16"/>
+    <text class="t-xs" x="32" y="383">KOPION · SITEWIDE</text>
 
     <text class="t-xs dim" x="24" y="500">MAP DATA</text>
     <text class="t-xs dim" x="24" y="512">u/ZANE_DRAGONBORN</text>
@@ -69,122 +69,63 @@
 
   <!-- ============ PLAN ============ -->
   <g>
-    <!-- the vault -->
-    <rect class="rm" x="436" y="58" width="90" height="95"/>
-    <rect class="rm2" x="448" y="68" width="66" height="34"/>
-    <rect class="rm2" x="448" y="112" width="66" height="32"/>
-    <!-- the keyed cross -->
-    <rect class="rm" x="520" y="112" width="46" height="46"/>
-    <rect class="rm2" x="530" y="122" width="26" height="26"/>
-
-    <!-- north corridor, gate B -->
-    <rect class="rm" x="330" y="60" width="22" height="150"/>
-    <rect class="rm" x="298" y="88" width="32" height="62"/>
-    <rect class="rm" x="352" y="118" width="34" height="42"/>
-    <rect class="rm" x="392" y="194" width="42" height="32"/>
-
-    <!-- central hub -->
-    <rect class="rm" x="408" y="242" width="94" height="84"/>
-    <rect class="rm2" x="418" y="252" width="34" height="30"/>
-    <rect class="rm2" x="240" y="246" width="100" height="20"/>
-
-    <!-- the last resort -->
-    <rect class="rm" x="278" y="264" width="52" height="46"/>
-    <rect class="rm" x="286" y="318" width="40" height="54"/>
-    <rect class="rm" x="196" y="320" width="62" height="34"/>
-    <rect class="rm" x="306" y="400" width="62" height="46"/>
-    <rect class="rm" x="230" y="436" width="64" height="34"/>
-
-    <!-- the crypt -->
-    <rect class="rm" x="356" y="376" width="62" height="60"/>
-    <rect class="rm" x="398" y="416" width="46" height="34"/>
-    <rect class="rm" x="358" y="462" width="56" height="42"/>
-
-    <!-- the wasteland -->
-    <rect class="rm" x="488" y="264" width="62" height="34"/>
-    <rect class="rm" x="580" y="210" width="54" height="44"/>
-    <rect class="rm" x="636" y="262" width="126" height="42"/>
-    <rect class="rm2" x="650" y="272" width="44" height="24"/>
-    <rect class="rm" x="756" y="300" width="62" height="46"/>
-    <rect class="rm" x="594" y="328" width="62" height="26"/>
-    <rect class="rm" x="618" y="366" width="62" height="32"/>
-
+    <path class="env" fill-rule="evenodd" d="M538.9,36.9H557.2V51.9H565.5V36.9H578.8V48.6H585.4V93.4H570.5V100H575.4V106.7H580.4V115H592V100H600.3V61.8H618.6V100H626.9V108.3H636.9V113.3H673.4V138.2H661.8V139.9H635.2V143.2H626.9V151.5H618.6V188H600.3V151.5H590.4V136.5H580.4V146.5H577.1V154.8H563.8V149.8H557.2V153.1H553.9V148.2H538.9V178H535.6V183H527.3V194.6H537.3V204.6H543.9V209.6H538.9V227.8H517.3V204.6H520.6V188H522.3V163.1H517.3V146.5H509V103.3H532.3V123.3H542.2V118.3H553.9V108.3H543.9V98.4H547.2V93.4H524V56.9H538.9ZM436,46.9H444.3V56.9H454.3V58.5H469.2V90.1H454.3V126.6H444.3V138.2H442.6V168.1H444.3V179.7H452.6V188H465.9V176.4H495.8V191.3H507.4V209.6H509V221.2H504.1V229.5H509V234.5H545.5V232.8H573.8V234.5H588.7V246.1H592V264.4H603.7V267.7H635.2V264.4H643.5V251.1H651.8V239.5H665.1V246.1H666.7V239.5H676.7V251.1H688.3V264.4H701.6V251.1H706.6V247.8H723.2V234.5H716.5V221.2H729.8V222.9H741.4V236.1H756.4V247.8H758V264.4H769.7V254.4H776.3V244.4H782.9V227.8H806.2V236.1H814.5V256.1H819.5V264.4H834.4V287.6H819.5V299.2H806.2V310.8H822.8V307.5H834.4V329.1H847.7V350.7H836.1V370.6H807.8V357.3H796.2V344H799.5V335.7H796.2V324.1H781.3V299.2H769.7V289.3H759.7V294.2H754.7V339.1H729.8V337.4H704.9V304.2H701.6V287.6H688.3V302.5H678.4V315.8H655.1V300.9H645.2V285.9H593.7V292.6H616.9V302.5H623.6V314.2H612V315.8H592V325.8H583.7V334.1H593.7V327.4H612V325.8H681.7V327.4H695V340.7H690V350.7H695V359H680V373.9H678.4V387.2H686.7V395.5H696.6V417.1H686.7V423.7H680V440.3H650.1V425.4H635.2V418.7H618.6V395.5H625.2V390.5H618.6V365.6H610.3V359H597V370.6H567.1V355.7H562.1V387.2H545.5V395.5H573.8V453.6H545.5V460.2H553.9V468.5H565.5V490.1H553.9V498.4H545.5V505.1H548.9V516.7H515.7V498.4H495.8V485.1H485.8V470.2H495.8V461.9H520.6V453.6H504.1V451.9H492.4V433.7H475.8V412.1H487.5V407.1H490.8V393.8H509V395.5H520.6V387.2H502.4V330.8H520.6V327.4H510.7V325.8H490.8V337.4H470.9V332.4H467.5V324.1H462.6V299.2H449.3V304.2H421.1V297.6H412.8V324.1H419.4V364H409.4V382.2H412.8V387.2H424.4V382.2H441V403.8H462.6V408.8H465.9V430.4H454.3V427H441V443.6H439.3V458.6H450.9V470.2H436V475.2H450.9V486.8H434.3V493.4H402.8V501.7H338.1V495.1H343V490.1H324.8V473.5H338.1V461.9H402.8V470.2H414.4V427H404.4V400.5H384.5V382.2H387.9V364H379.6V355.7H369.6V370.6H338.1V355.7H326.4V347.4H334.7V342.4H324.8V334.1H336.4V320.8H369.6V332.4H379.6V324.1H387.9V310.8H376.2V300.9H377.9V281H391.2V274.3H374.6V262.7H362.9V256.1H376.2V251.1H359.6V242.8H372.9V236.1H381.2V221.2H404.4V236.1H411.1V242.8H422.7V241.1H462.6V229.5H480.8V212.9H450.9V221.2H412.8V211.2H399.5V188H409.4V179.7H421.1V168.1H424.4V126.6H404.4V121.6H391.2V106.7H402.8V96.7H414.4V91.7H399.5V80.1H387.9V65.2H397.8V55.2H424.4V48.6H431V179.7H436V90.1H437.6V76.8H436ZM384.5,244.4V251.1H379.6V256.1H384.5V262.7H397.8V259.4H402.8V256.1H407.8V251.1H401.1V244.4ZM660.1,264.4V287.6H673.4V276H671.7V264.4ZM522.3,272.7V297.6H540.6V292.6H547.2V281H543.9V272.7ZM525.6,352.3V362.3H532.3V380.6H537.3V359H540.6V352.3ZM633.5,365.6V385.5H651.8V365.6ZM538.9,405.5V442H543.9V438.7H547.2V443.6H552.2V405.5ZM517.3,408.8V418.7H512.4V425.4H517.3V437H529V408.8Z"/>
+    <path class="rm" fill-rule="evenodd" d="M585.4,51.9V91.7H567.1V100H572.1V106.7H580.4V116.6H592V100H600.3V61.8H618.6V100H625.2V110H635.2V116.6H643.5V118.3H673.4V134.9H635.2V143.2H628.5V139.9H626.9V149.8H618.6V156.5H616.9V174.7H612V171.4H603.7V183H613.6V179.7H616.9V188H600.3V149.8H592V136.5H587V131.6H583.7V136.5H580.4V144.8H577.1V153.1H568.8V148.2H565.5V138.2H563.8V126.6H598.7V133.2H607V143.2H612V134.9H618.6V126.6H626.9V123.3H618.6V115H612V106.7H607V119.9H603.7V115H598.7V123.3H563.8V105H562.1V85.1H563.8V58.5H570.5V60.2H580.4V51.9ZM406.1,56.9H412.8V88.4H399.5V80.1H404.4V76.8H399.5V63.5H406.1ZM550.5,58.5V60.2H558.8V133.2H527.3V227.8H517.3V217.9H519V207.9H520.6V198H522.3V161.4H519V144.8H514V106.7H529V124.9H543.9V119.9H553.9V108.3H543.9V100H550.5V91.7H527.3V80.1H525.6V68.5H524V58.5ZM431,58.5V75.1H424.4V80.1H431V86.7H426V98.4H431V128.2H426V124.9H422.7V116.6H417.7V121.6H412.8V124.9H402.8V119.9H396.1V106.7H402.8V98.4H419.4V81.8H416.1V68.5H421.1V58.5ZM437.6,58.5H444.3V65.2H452.6V81.8H450.9V110H446V113.3H450.9V123.3H444.3V128.2H441V134.9H442.6V143.2H437.6V119.9H444.3V115H437.6V86.7H441V93.4H444.3V78.4H439.3V70.1H437.6ZM389.5,65.2H396.1V78.4H389.5ZM431,134.9V159.8H426V134.9ZM542.2,136.5H558.8V149.8H555.5V143.2H538.9V164.8H535.6V169.7H532.3V138.2H542.2ZM424.4,169.7H429.4V181.4H431V204.6H439.3V207.9H444.3V204.6H452.6V212.9H449.3V217.9H442.6V219.5H414.4V211.2H409.4V207.9H406.1V199.6H401.1V193H409.4V189.7H414.4V183H424.4ZM439.3,169.7H441V183H449.3V193H455.9V188H467.5V179.7H477.5V194.6H484.1V186.3H485.8V178H495.8V193H502.4V207.9H505.7V216.2H495.8V199.6H436V193H441V189.7H436V178H439.3ZM537.3,202.9V212.9H535.6V226.2H532.3V202.9ZM459.2,204.6H490.8V251.1H469.2V249.4H460.9V251.1H421.1V249.4H414.4V251.1H404.4V244.4H382.9V251.1H361.3V244.4H376.2V236.1H386.2V221.2H399.5V227.8H401.1V237.8H411.1V246.1H422.7V244.4H429.4V246.1H450.9V244.4H462.6V231.2H480.8V221.2H484.1V216.2H480.8V207.9H475.8V212.9H459.2ZM495.8,219.5H504.1V231.2H509V236.1H527.3V251.1H495.8V234.5H500.7V231.2H495.8ZM718.2,224.5H739.8V231.2H741.4V239.5H754.7V251.1H756.4V266H763V267.7H773V259.4H784.6V254.4H776.3V246.1H782.9V229.5H804.5V236.1H814.5V254.4H806.2V259.4H817.8V266H832.7V285.9H816.1V295.9H804.5V307.5H811.2V314.2H797.9V284.3H806.2V271H782.9V276H673.4V264.4H670V239.5H675V254.4H686.7V267.7H695V266H703.3V259.4H714.9V256.1H723.2V231.2H718.2ZM545.5,234.5H588.7V246.1H590.4V267.7H635.2V266H646.8V254.4H658.4V252.7H655.1V241.1H663.4V257.7H665.1V264.4H660.1V276H630.2V274.3H608.6V276H568.8V282.6H545.5V276H540.6V271H537.3V251.1H532.3V236.1H545.5ZM743.1,241.1V247.8H744.8V259.4H749.7V251.1H746.4V249.4H749.7V241.1ZM422.7,256.1H459.2V259.4H469.2V256.1H530.6V264.4H532.3V272.7H525.6V277.6H522.3V282.6H442.6V274.3H426V282.6H397.8V342.4H356.3V334.1H351.3V342.4H326.4V335.7H339.7V322.5H367.9V335.7H381.2V327.4H389.5V307.5H379.6V299.2H394.5V292.6H386.2V290.9H377.9V282.6H392.8V276H407.8V274.3H422.7V271H449.3V272.7H464.2V266H455.9V262.7H422.7V264.4H411.1V266H404.4V272.7H376.2V257.7H382.9V264.4H404.4V257.7H412.8V259.4H422.7ZM590.4,281V294.2H616.9V304.2H623.6V312.5H612V310.8H600.3V314.2H590.4V324.1H582.1V332.4H580.4V342.4H587V337.4H595.4V327.4H608.6V332.4H612V337.4H616.9V330.8H646.8V329.1H661.8V335.7H666.7V329.1H676.7V339.1H686.7V329.1H693.3V342.4H690V352.3H681.7V357.3H670V345.7H641.8V340.7H648.5V337.4H635.2V344H628.5V345.7H612V344H602V345.7H573.8V332.4H575.4V324.1H573.8V281ZM598.7,281H621.9V284.3H598.7ZM628.5,281H660.1V289.3H673.4V281H764.7V287.6H758V295.9H754.7V309.2H753V324.1H754.7V335.7H749.7V329.1H709.9V332.4H706.6V304.2H704.9V287.6H686.7V299.2H678.4V314.2H656.8V299.2H648.5V287.6H643.5V284.3H628.5ZM768,281H782.9V284.3H792.9V319.1H817.8V330.8H824.4V324.1H822.8V314.2H826.1V307.5H834.4V330.8H846V345.7H834.4V344H817.8V347.4H822.8V352.3H827.8V359H836.1V368.9H816.1V370.6H807.8V359H809.5V349H816.1V342.4H807.8V345.7H799.5V327.4H809.5V324.1H796.2V322.5H782.9V304.2H789.6V300.9H784.6V295.9H773V285.9H768ZM404.4,287.6H429.4V297.6H421.1V294.2H404.4ZM441,287.6H464.2V290.9H470.9V289.3H520.6V294.2H525.6V297.6H532.3V322.5H529V330.8H530.6V340.7H525.6V344H532.3V350.7H524V354H520.6V335.7H515.7V344H505.7V332.4H524V324.1H490.8V337.4H469.2V324.1H464.2V295.9H447.6V304.2H437.6V297.6H441ZM547.2,287.6H570.5V324.1H567.1V334.1H570.5V350.7H603.7V354H608.6V359H593.7V368.9H587V354H577.1V368.9H568.8V354H562.1V372.3H557.2V347.4H553.9V337.4H548.9V345.7H543.9V340.7H542.2V349H537.3V297.6H542.2V292.6H547.2ZM402.8,294.2H406.1V300.9H409.4V327.4H416.1V334.1H417.7V354H416.1V362.3H407.8V368.9H406.1V382.2H412.8V387.2H416.1V390.5H402.8V337.4H407.8V334.1H402.8ZM721.5,295.9V299.2H738.1V295.9ZM595.4,300.9H590.4V305.9H595.4ZM542.2,324.1V332.4H562.1V324.1ZM328.1,347.4H351.3V357.3H358V347.4H397.8V395.5H421.1V405.5H422.7V466.9H417.7V433.7H412.8V423.7H409.4V415.4H411.1V400.5H386.2V382.2H391.2V362.3H381.2V354H377.9V350.7H371.3V355.7H367.9V365.6H358V367.3H339.7V355.7H328.1ZM635.2,350.7V354H650.1V352.3H663.4V377.2H661.8V383.9H663.4V395.5H655.1V407.1H668.4V415.4H676.7V410.4H683.3V423.7H648.5V413.8H643.5V425.4H635.2V397.2H648.5V388.9H656.8V382.2H653.5V367.3H660.1V365.6H650.1V362.3H638.5V357.3H633.5V365.6H623.6V362.3H618.6V359H610.3V350.7ZM618.6,368.9H631.9V375.6H618.6ZM537.3,372.3H543.9V378.9H553.9V382.2H558.8V385.5H542.2V395.5H548.9V397.2H570.5V415.4H568.8V435.3H570.5V442H568.8V450.3H548.9V451.9H535.6V423.7H538.9V443.6H553.9V405.5H538.9V415.4H535.6V385.5H537.3ZM675,377.2V388.9H676.7V395.5H670V377.2ZM524,377.2H532.3V420.4H529V407.1H512.4V420.4H480.8V418.7H474.2V412.1H482.5V413.8H494.1V407.1H504.1V395.5H510.7V403.8H517.3V398.8H514V397.2H520.6V393.8H524V387.2H520.6V382.2H524ZM618.6,378.9H631.9V393.8H625.2V385.5H618.6ZM429.4,383.9H439.3V405.5H449.3V407.1H464.2V415.4H462.6V423.7H459.2V427H454.3V422.1H441V423.7H427.7V393.8H429.4ZM618.6,397.2H631.9V417.1H618.6ZM640.2,403.8V408.8H646.8V403.8ZM558.8,413.8V423.7H562.1V432H563.8V413.8ZM414.4,420.4V425.4H419.4V420.4ZM512.4,425.4V440.3H510.7V450.3H517.3V443.6H527.3V437H529V428.7H532.3V453.6H512.4V451.9H500.7V447H504.1V438.7H492.4V432H480.8V425.4ZM653.5,427H660.1V440.3H653.5ZM663.4,427H670V433.7H680V440.3H663.4ZM427.7,428.7H436V438.7H432.7V448.6H437.6V460.2H449.3V466.9H432.7V476.8H449.3V485.1H434.3V493.4H414.4V491.8H402.8V501.7H362.9V500.1H339.7V495.1H343V468.5H338.1V463.6H364.6V466.9H369.6V461.9H384.5V463.6H401.1V471.9H419.4V476.8H422.7V481.8H367.9V486.8H384.5V485.1H406.1V486.8H414.4V485.1H427.7ZM560.5,440.3V447H565.5V440.3ZM525.6,458.6H532.3V473.5H525.6V470.2H520.6V473.5H515.7V461.9H525.6ZM535.6,460.2H550.5V470.2H558.8V481.8H562.1V486.8H555.5V491.8H548.9V496.8H540.6V501.7H545.5V506.7H530.6V505.1H519V511.7H527.3V513.4H542.2V516.7H517.3V503.4H522.3V496.8H515.7V478.5H535.6V473.5H538.9V468.5H535.6ZM495.8,461.9H510.7V496.8H495.8V488.5H504.1V483.5H495.8V478.5H492.4V485.1H485.8V470.2H495.8ZM326.4,473.5H338.1V486.8H326.4ZM351.3,491.8V495.1H374.6V491.8Z"/>
     <!-- free-path network -->
-    <path class="p" d="M340,49V209H413V252L452,282 M230,255H452 M452,282H746L781,318V330
-                       M606,282V230 M452,282V394H386V489 M386,432H410
-                       M452,282H304V395L332,424V453H262
-                       M304,336H212 M663,392H604V340H536V282"/>
-    <circle cx="340" cy="49" r="5" fill="#150F0A"/>
-    <circle cx="230" cy="255" r="5" fill="#150F0A"/>
-    <circle cx="663" cy="392" r="5" fill="#150F0A"/>
-    <circle cx="452" cy="282" r="13" fill="#150F0A"/>
-
-    <!-- timer-locked path into the vault -->
-    <path class="p" d="M485,58V153H450V273 M485,135H528 M485,153V172"/>
-    <path class="k-timer" d="M485,58V153H450V273 M485,135H528"/>
-
+    <path class="p" d="M433,26.1 433.2,201.3 493.3,201.3 493.3,253.1"/><path class="p" d="M337.7,253.1 533.3,253.1 533.3,475.8 502.7,475.8"/><path class="p" d="M529,231.8 529,253.1"/><path class="p" d="M400.1,285.1 571.4,285.1"/><path class="p" d="M400.1,285.1 400.1,393 425.2,393 425.2,482.8 360.6,482.8"/><path class="p" d="M309,344 400.1,344"/><path class="p" d="M571.4,277.6 794.5,277.6 794.5,315.8 819.5,315.8 819.5,335.1"/><path class="p" d="M666.7,225.5 666.9,277.6"/><path class="p" d="M571.4,277.6 571.4,347.4 665.2,347.4 665.2,405 717.7,405"/><path class="p" d="M472,514.4 471.8,422.2 533.3,422.2"/>
+    <circle cx="433" cy="26.1" r="4.5" fill="#150F0A"/>
+    <circle cx="337.7" cy="253.1" r="4.5" fill="#150F0A"/>
+    <circle cx="717.7" cy="405" r="4.5" fill="#150F0A"/>
+    <circle cx="533.3" cy="285.1" r="11" fill="#150F0A"/>
+    <!-- timer-locked route into the vault -->
+    <path class="p" d="M529,231.8 528.8,134.2 560.2,134.2"/><path class="p" d="M560,26.5 560.2,153.3"/><path class="p" d="M560.2,124.4 632.4,124.4"/><path class="p" d="M609.3,103.3 609.3,146.7"/><path class="k-timer" d="M529,231.8 528.8,134.2 560.2,134.2"/><path class="k-timer" d="M560,26.5 560.2,153.3"/><path class="k-timer" d="M560.2,124.4 632.4,124.4"/><path class="k-timer" d="M609.3,103.3 609.3,146.7"/>
     <!-- unique-key cross -->
-    <path class="p" d="M541,95V185 M528,135H600"/>
-    <path class="k-uniq" d="M541,95V185 M528,135H600"/>
-    <circle cx="541" cy="95" r="4.5" fill="#150F0A"/>
-    <circle cx="600" cy="135" r="4.5" fill="#150F0A"/>
-
+    <path class="p" d="M609.1,67.5 609.3,103.3"/><path class="p" d="M632.4,124.4 663.6,124.4"/><path class="p" d="M609,146.7 609.3,176.7"/><path class="k-uniq" d="M609.1,67.5 609.3,103.3"/><path class="k-uniq" d="M632.4,124.4 663.6,124.4"/><path class="k-uniq" d="M609,146.7 609.3,176.7"/>
+    <circle cx="609.1" cy="67.5" r="4.5" fill="#150F0A"/>
+    <circle cx="663.6" cy="124.4" r="4.5" fill="#150F0A"/>
     <!-- door plates -->
-    <rect x="450" y="228" width="60" height="13" fill="#150F0A"/>
-    <text class="t-xs cream" x="480" y="238" text-anchor="middle">TIMER DOOR</text>
-    <rect x="512" y="88" width="58" height="12" fill="#150F0A"/>
-    <text class="t-xs cream" x="541" y="97.5" text-anchor="middle">WASTELAND</text>
-    <rect x="556" y="118" width="62" height="12" fill="#150F0A"/>
-    <text class="t-xs cream" x="587" y="127.5" text-anchor="middle">LAST RESORT</text>
-    <rect x="514" y="158" width="54" height="12" fill="#150F0A"/>
-    <text class="t-xs cream" x="541" y="167.5" text-anchor="middle">CRYPT DOOR</text>
-
+    <g transform="translate(528.5,231.8)"><rect x="-27" y="-4.75" width="54" height="9.5" fill="#150F0A"/><text class="t-pl cream" y="2.1" text-anchor="middle">TIMER DOOR</text></g>
+    <g transform="translate(606.1,103.3)"><rect x="-24.7" y="-4.75" width="49.4" height="9.5" fill="#150F0A"/><text class="t-pl cream" y="2.1" text-anchor="middle">WASTELAND</text></g>
+    <g transform="translate(604.5,146.7)"><rect x="-27" y="-4.75" width="54" height="9.5" fill="#150F0A"/><text class="t-pl cream" y="2.1" text-anchor="middle">CRYPT DOOR</text></g>
+    <g transform="translate(636.9,124.4) rotate(-90)"><rect x="-29.3" y="-4.75" width="58.6" height="9.5" fill="#150F0A"/><text class="t-pl cream" y="2.1" text-anchor="middle">LAST RESORT</text></g>
+    <!-- one-way doors, all leading in toward the hub -->
+    <use href="#oneway" transform="translate(433,173.2) rotate(90)"/>
+    <use href="#oneway" x="456.7" y="201.3"/>
+    <use href="#oneway" x="417.2" y="253.1"/>
+    <use href="#oneway" x="463.9" y="253.1"/>
+    <use href="#oneway" transform="translate(571.4,327.1) rotate(-90)"/>
+    <use href="#oneway" transform="translate(606.1,347.4) rotate(180)"/>
     <!-- objectives -->
-    <use href="#obj" x="471" y="128"/>
-    <path class="hair" d="M463,126 415,72"/>
-    <text class="t" x="412" y="70" text-anchor="end">TABLET 6</text>
-    <use href="#obj" x="541" y="190"/>
-    <text class="t" x="556" y="194">TABLET 5</text>
-
+    <path class="lead" d="M502.4,41.9 544.7,109.2"/>
+    <use href="#obj" x="549" y="113.6"/>
+    <use href="#obj" x="609.3" y="176.7"/>
     <!-- fixtures -->
-    <use href="#frgt" x="483" y="52"/>
-    <use href="#extr" x="485" y="176"/>
-    <use href="#extr" x="606" y="230"/>
-    <use href="#extr" x="212" y="337"/>
-    <use href="#extr" x="386" y="489"/>
-
-    <use href="#print" x="781" y="330"/>
-    <use href="#print" x="262" y="453"/>
-    <use href="#print" x="418" y="432"/>
-
-    <use href="#fdoor" x="377" y="282"/>
-    <use href="#fdoor" x="505" y="282"/>
-    <use href="#fdoor" x="452" y="318"/>
-
-    <use href="#arrow" transform="translate(340,184) rotate(90)"/>
-    <use href="#arrow" transform="translate(374,209)"/>
-    <use href="#arrow" transform="translate(316,255)"/>
-    <use href="#arrow" transform="translate(376,255)"/>
-    <use href="#arrow" transform="translate(536,340) rotate(180)"/>
-
-    <use href="#lock" x="344" y="96"/>
-    <use href="#lock" x="462" y="120"/>
-
+    <use href="#frgt" x="560" y="26.5"/>
+    <use href="#extr" x="560.3" y="153.3"/>
+    <use href="#extr" x="666.7" y="225.5"/>
+    <use href="#extr" x="309" y="344"/>
+    <use href="#extr" x="472" y="514.4"/>
+    <use href="#print" x="819.3" y="335.1"/>
+    <use href="#print" x="502.7" y="475.8"/>
+    <use href="#print" x="360.6" y="482.8"/>
+    <use href="#fdoor" x="594.2" y="277.6"/>
+    <use href="#fdoor" x="466.2" y="285.1"/>
+    <use href="#fdoor" x="533.3" y="324.3"/>
     <!-- callouts -->
-    <text class="t" x="481" y="42" text-anchor="middle">THE VAULT</text>
-    <text class="t" x="765" y="216" text-anchor="middle">THE WASTELAND</text>
-    <text class="t" x="250" y="412" text-anchor="middle">THE LAST RESORT</text>
-    <text class="t" x="440" y="512" text-anchor="middle">THE CRYPT</text>
-
-    <text class="t-sm" x="340" y="38" text-anchor="middle">GATE B &gt; ACCESS B</text>
-    <text class="t-sm" x="248" y="244" text-anchor="middle">GATE A &gt; ACCESS A</text>
-    <text class="t-sm" x="671" y="395">GATE C &gt; ACCESS C</text>
-
-    <text class="t-sm dim" x="606" y="216" text-anchor="middle">EXTRACT</text>
-    <text class="t-sm dim" x="212" y="354" text-anchor="middle">EXTRACT</text>
-    <text class="t-sm dim" x="374" y="492" text-anchor="end">EXTRACT</text>
-    <text class="t-xs dim" x="781" y="348" text-anchor="middle">WASTELAND KEY</text>
-    <text class="t-xs dim" x="262" y="470" text-anchor="middle">LAST RESORT KEY</text>
-    <text class="t-xs dim" x="418" y="452" text-anchor="middle">CRYPT KEY</text>
+    <text class="t halo" x="559.8" y="14.5" text-anchor="middle">THE VAULT</text>
+    <text class="t halo" x="500.4" y="43.9" text-anchor="end">TABLET 6</text>
+    <text class="t halo" x="621.3" y="180.7">TABLET 5</text>
+    <text class="t halo" x="801.2" y="214.6" text-anchor="middle">THE WASTELAND</text>
+    <text class="t halo" x="319.8" y="427.7" text-anchor="middle">THE LAST RESORT</text>
+    <text class="t halo" x="573.3" y="518.4">THE CRYPT</text>
+    <text class="t-sm halo" x="433" y="16.1" text-anchor="middle">GATE B &gt; ACCESS B</text>
+    <text class="t-sm halo" x="328.7" y="256.6" text-anchor="end">GATE A &gt; ACCESS A</text>
+    <text class="t-sm halo" x="726.7" y="408.5">GATE C &gt; ACCESS C</text>
+    <text class="t-sm dim halo" x="656.7" y="229" text-anchor="end">EXTRACT</text>
+    <text class="t-sm dim halo" x="299" y="347.5" text-anchor="end">EXTRACT</text>
+    <text class="t-sm dim halo" x="462" y="517.9" text-anchor="end">EXTRACT</text>
+    <text class="t-xs dim halo" x="819.3" y="351.1" text-anchor="middle">WASTELAND KEY</text>
+    <text class="t-xs dim halo" x="360.6" y="498.8" text-anchor="middle">LAST RESORT KEY</text>
+    <text class="t-xs dim halo" x="502.7" y="491.8" text-anchor="middle">CRYPT KEY</text>
   </g>
 </svg>
