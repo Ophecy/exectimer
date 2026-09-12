@@ -49,6 +49,19 @@ npm run preview
 Pushing to `main` builds the site and publishes it to GitHub Pages via
 `.github/workflows/deploy.yml` (Pages source must be set to *GitHub Actions*).
 
+### Cycle epoch
+
+The cycle anchor ships with the build so visitors get a calibrated timer without
+syncing anything themselves. Set the repository variable `CYCLE_EPOCH` (Settings
+→ Secrets and variables → Actions → *Variables*) to an ISO 8601 instant when all
+5 LEDs were observed green — the moment the access window opens, e.g.
+`2026-09-07T11:10:00Z` — and redeploy. Unset, the build falls back to the value
+in `src/cycle.ts`; unparseable, it falls back too and logs `[PHT-EPOCH-01]`.
+
+A visitor's own admin sync still wins, but only while it is more recent than the
+published epoch: shipping a new `CYCLE_EPOCH` retires older local syncs, so one
+fresh observation recalibrates everybody.
+
 A project site is served from `https://<user>.github.io/<repo>/`, so the Vite
 `base` has to match the repository name — otherwise every asset 404s and the
 page renders as bare HTML with no CSS or timers. `vite.config.ts` reads it back

@@ -1061,6 +1061,16 @@ details.qa > p {
   flex-wrap: wrap;
 }
 
+.statusbar-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-amber-deep);
+}
+
+.statusbar-link:hover {
+  color: var(--color-amber);
+}
+
 .live {
   display: inline-flex;
   align-items: center;

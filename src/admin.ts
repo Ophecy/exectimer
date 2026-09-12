@@ -3,15 +3,17 @@ import {
   loadDurationOverrides,
   saveDurationOverrides,
   clearDurationOverrides,
+  loadLastSyncMs,
   saveSyncAnchorMs,
   type CycleDurationOverrides,
 } from './cycleConfig.ts'
 import { renderCycleView, renderStaticConfigInfo } from './render.ts'
 import { startAllPaused, resetAllTimers } from './manualTimers.ts'
-import { loadJSON, saveJSON } from './storage.ts'
 import { getCurrentLang, translate } from './i18n.ts'
 
-const LAST_SYNC_KEY = 'last-sync-ms'
+// While untouched the sync field mirrors the clock, so the plain "sync on now"
+// case stays a single click; the first edit hands control to the user.
+let syncInputEdited = false
 
 function rerenderCycle(doc: Document): void {
   const config = getEffectiveCycleConfig()
@@ -20,11 +22,26 @@ function rerenderCycle(doc: Document): void {
   renderCycleView(doc, new Date(), config, lang)
 }
 
+function getSyncInput(doc: Document): HTMLInputElement | null {
+  return doc.getElementById('admin-sync-input') as HTMLInputElement | null
+}
+
+/** `datetime-local` wants a local-time `YYYY-MM-DDTHH:MM:SS` string, not UTC. */
+function toLocalInputValue(date: Date): string {
+  return new Date(date.getTime() - date.getTimezoneOffset() * 60_000).toISOString().slice(0, 19)
+}
+
+export function tickSyncInput(doc: Document): void {
+  const input = getSyncInput(doc)
+  if (!input || syncInputEdited) return
+  input.value = toLocalInputValue(new Date())
+}
+
 export function renderSyncBadge(doc: Document): void {
   const el = doc.getElementById('timestamp-badge')
   if (!el) return
   const lang = getCurrentLang()
-  const lastSync = loadJSON<number | null>(LAST_SYNC_KEY, null)
+  const lastSync = loadLastSyncMs()
   const timeText =
     lastSync !== null
       ? new Date(lastSync).toLocaleTimeString(lang, { hour: '2-digit', minute: '2-digit' })
@@ -80,10 +97,23 @@ export function initAdminPanel(doc: Document): void {
     if (event.key === 'Escape' && doc.body.dataset.admin === 'open') setPanel(false)
   })
 
+  getSyncInput(doc)?.addEventListener('input', () => {
+    syncInputEdited = true
+  })
+
   doc.getElementById('admin-sync-btn')?.addEventListener('click', () => {
-    const now = Date.now()
-    saveSyncAnchorMs(now)
-    saveJSON(LAST_SYNC_KEY, now)
+    const value = getSyncInput(doc)?.value
+    const anchor = value ? new Date(value) : new Date()
+    if (Number.isNaN(anchor.getTime())) {
+      // Unparseable field: refuse the sync and hand the clock back rather than
+      // anchoring the whole cycle on a garbage instant.
+      syncInputEdited = false
+      tickSyncInput(doc)
+      return
+    }
+    saveSyncAnchorMs(anchor.getTime())
+    syncInputEdited = false
+    tickSyncInput(doc)
     renderSyncBadge(doc)
     rerenderCycle(doc)
   })
@@ -101,5 +131,6 @@ export function initAdminPanel(doc: Document): void {
   bindDurationInput(doc, 'admin-power-down-input', (o, v) => (o.powerDownMinutesPerLed = v))
   bindDurationInput(doc, 'admin-cooldown-input', (o, v) => (o.cooldownMinutes = v))
 
+  tickSyncInput(doc)
   renderSyncBadge(doc)
 }

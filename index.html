@@ -386,8 +386,17 @@
             Pyro Hangar Timer &nbsp;·&nbsp; <span data-i18n="footer.pyroSystem">Pyro System</span>
           </span>
           <span class="lbl-sm">
-            <span data-i18n="footer.fanMade">Fan-made concept</span> &nbsp;·&nbsp; ©
-            <span id="copyright-year">2026</span>
+            <span data-i18n="footer.fanMade">Made by Ophecy</span> &nbsp;·&nbsp; ©
+            <span id="copyright-year">2026</span> &nbsp;·&nbsp;
+            <a
+              class="statusbar-link"
+              href="https://github.com/Ophecy/exectimer"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Hosted with <span aria-hidden="true">♥</span
+              ><span class="sr-only">love</span> on GitHub
+            </a>
           </span>
         </div>
       </footer>
@@ -419,8 +428,14 @@
       <div class="drawer-body">
         <div class="card">
           <h3 data-i18n="admin.syncTitle">Synchronization</h3>
+          <label class="field">
+            <span data-i18n="admin.syncAtLabel">Access window opens at</span>
+            <input id="admin-sync-input" type="datetime-local" step="1" />
+          </label>
           <button class="hw-btn" type="button" id="admin-sync-btn" data-i18n="admin.syncButton">Sync</button>
-          <p class="sync-note" data-i18n="admin.syncNote">Realigns the cycle anchor on the current moment.</p>
+          <p class="sync-note" data-i18n="admin.syncNote">
+            Realigns the cycle anchor on the moment set above. The field follows the clock until you edit it.
+          </p>
         </div>
 
         <div class="card">

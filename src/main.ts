@@ -2,7 +2,7 @@ import './style.css'
 import { renderCycleView, renderStaticConfigInfo } from './render.ts'
 import { getEffectiveCycleConfig } from './cycleConfig.ts'
 import { initLanguageSwitch, getCurrentLang, LANG_CHANGE_EVENT } from './i18n.ts'
-import { initAdminPanel, renderSyncBadge } from './admin.ts'
+import { initAdminPanel, renderSyncBadge, tickSyncInput } from './admin.ts'
 import { initManualTimers, initZoneMaps, tickManualTimers } from './manualTimers.ts'
 import { initTerminal, syncHudReadout } from './terminal.ts'
 
@@ -15,6 +15,7 @@ function renderAll() {
   renderStaticConfigInfo(document, config, lang)
   renderCycleView(document, new Date(), config, lang)
   tickManualTimers(document)
+  tickSyncInput(document)
   syncHudReadout(document)
 }
 

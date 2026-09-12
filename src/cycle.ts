@@ -7,13 +7,34 @@ export interface CycleConfig {
   referenceAllGreenAt: Date
 }
 
+// Observed: all 5 LEDs green on 2026-09-07 13:10 Europe/Paris (CEST, UTC+2).
+const FALLBACK_ALL_GREEN_AT = '2026-09-07T11:10:00Z'
+
+/**
+ * The project-wide calibration instant, baked into the build from the
+ * `CYCLE_EPOCH` GitHub repository variable (an ISO 8601 instant, e.g.
+ * `2026-09-07T11:10:00Z`). Publishing a fresh observation recalibrates every
+ * visitor, so nobody has to run the admin sync on their own machine.
+ */
+function resolveBuildEpoch(): Date {
+  const raw = import.meta.env?.VITE_CYCLE_EPOCH
+  if (!raw) return new Date(FALLBACK_ALL_GREEN_AT)
+  const parsed = new Date(raw)
+  if (Number.isNaN(parsed.getTime())) {
+    console.error(`[PHT-EPOCH-01] VITE_CYCLE_EPOCH is not a valid ISO 8601 instant: ${raw}`)
+    return new Date(FALLBACK_ALL_GREEN_AT)
+  }
+  return parsed
+}
+
+export const BUILD_EPOCH_MS = resolveBuildEpoch().getTime()
+
 export const DEFAULT_CYCLE_CONFIG: CycleConfig = {
   ledCount: 5,
   powerUpMinutesPerLed: 24,
   powerDownMinutesPerLed: 12,
   cooldownMinutes: 5,
-  // Observed: all 5 LEDs green on 2026-09-07 13:10 Europe/Paris (CEST, UTC+2).
-  referenceAllGreenAt: new Date('2026-09-07T11:10:00Z'),
+  referenceAllGreenAt: new Date(BUILD_EPOCH_MS),
 }
 
 // A LED is only ever 'red' (off — not yet charged, or already discharged) or
