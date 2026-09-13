@@ -66,6 +66,7 @@
   "admin.syncTitle": "Synchronisierung",
   "admin.syncAtLabel": "Zugangsfenster öffnet um",
   "admin.syncButton": "Sync",
+  "admin.syncReset": "Veröffentlichte Epoche wiederherstellen",
   "admin.cycleTimingTitle": "Zyklus-Timing",
   "admin.powerUpLabel": "Aufladen Min/LED",
   "admin.powerDownLabel": "Abladen Min/LED",

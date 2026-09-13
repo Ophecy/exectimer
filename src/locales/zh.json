@@ -66,6 +66,7 @@
   "admin.syncTitle": "同步",
   "admin.syncAtLabel": "开放窗口开始于",
   "admin.syncButton": "同步",
+  "admin.syncReset": "恢复已发布的基准时刻",
   "admin.cycleTimingTitle": "周期时间设置",
   "admin.powerUpLabel": "充能 分钟/LED",
   "admin.powerDownLabel": "放能 分钟/LED",

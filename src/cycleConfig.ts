@@ -46,6 +46,12 @@ export function loadSyncAnchorMs(): number | null {
   return anchor
 }
 
+/** Drops the local calibration so the published build epoch takes over again. */
+export function clearSyncAnchor(): void {
+  clearKey(SYNC_ANCHOR_KEY)
+  clearKey(LAST_SYNC_KEY)
+}
+
 export function saveSyncAnchorMs(ms: number): void {
   saveJSON(SYNC_ANCHOR_KEY, ms)
   saveJSON(LAST_SYNC_KEY, Date.now())

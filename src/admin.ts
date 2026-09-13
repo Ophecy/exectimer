@@ -5,6 +5,7 @@ import {
   clearDurationOverrides,
   loadLastSyncMs,
   saveSyncAnchorMs,
+  clearSyncAnchor,
   type CycleDurationOverrides,
 } from './cycleConfig.ts'
 import { renderCycleView, renderStaticConfigInfo } from './render.ts'
@@ -112,6 +113,14 @@ export function initAdminPanel(doc: Document): void {
       return
     }
     saveSyncAnchorMs(anchor.getTime())
+    syncInputEdited = false
+    tickSyncInput(doc)
+    renderSyncBadge(doc)
+    rerenderCycle(doc)
+  })
+
+  doc.getElementById('admin-sync-reset-btn')?.addEventListener('click', () => {
+    clearSyncAnchor()
     syncInputEdited = false
     tickSyncInput(doc)
     renderSyncBadge(doc)

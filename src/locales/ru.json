@@ -66,6 +66,7 @@
   "admin.syncTitle": "Синхронизация",
   "admin.syncAtLabel": "Окно доступа откроется в",
   "admin.syncButton": "Sync",
+  "admin.syncReset": "Вернуть опубликованную точку отсчёта",
   "admin.cycleTimingTitle": "Тайминги цикла",
   "admin.powerUpLabel": "Зарядка мин/LED",
   "admin.powerDownLabel": "Разрядка мин/LED",

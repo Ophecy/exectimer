@@ -66,6 +66,7 @@
   "admin.syncTitle": "同期",
   "admin.syncAtLabel": "アクセス可能になる時刻",
   "admin.syncButton": "同期",
+  "admin.syncReset": "公開されている基準時刻に戻す",
   "admin.cycleTimingTitle": "サイクルタイミング",
   "admin.powerUpLabel": "充電 分/LED",
   "admin.powerDownLabel": "放電 分/LED",

@@ -66,6 +66,7 @@
   "admin.syncTitle": "Sincronizzazione",
   "admin.syncAtLabel": "La finestra di accesso apre alle",
   "admin.syncButton": "Sync",
+  "admin.syncReset": "Ripristina l'epoch pubblicato",
   "admin.cycleTimingTitle": "Tempistiche del ciclo",
   "admin.powerUpLabel": "Carica min/LED",
   "admin.powerDownLabel": "Scarica min/LED",

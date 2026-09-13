@@ -66,6 +66,7 @@
   "admin.syncTitle": "Sincronização",
   "admin.syncAtLabel": "A janela de acesso abre às",
   "admin.syncButton": "Sync",
+  "admin.syncReset": "Restaurar a época publicada",
   "admin.cycleTimingTitle": "Tempos do ciclo",
   "admin.powerUpLabel": "Carga min/LED",
   "admin.powerDownLabel": "Descarga min/LED",

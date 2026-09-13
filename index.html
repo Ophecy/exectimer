@@ -472,7 +472,27 @@
             <span data-i18n="admin.syncAtLabel">Access window opens at</span>
             <input id="admin-sync-input" type="datetime-local" step="1" />
           </label>
-          <button class="hw-btn" type="button" id="admin-sync-btn" data-i18n="admin.syncButton">Sync</button>
+          <div class="btn-grid btn-grid--sync">
+            <button class="hw-btn" type="button" id="admin-sync-btn" data-i18n="admin.syncButton">Sync</button>
+            <button
+              class="hw-btn"
+              type="button"
+              id="admin-sync-reset-btn"
+              data-i18n-attr="aria-label:admin.syncReset,title:admin.syncReset"
+              aria-label="Restore the published epoch"
+              title="Restore the published epoch"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M20 12a8 8 0 11-2.34-5.66M20 4v4h-4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
           <p class="sync-note" data-i18n="admin.syncNote">
             Realigns the cycle anchor on the moment set above. The field follows the clock until you edit it.
           </p>

@@ -1209,6 +1209,11 @@ body[data-admin="open"] .scrim {
   gap: 8px;
 }
 
+/* sync keeps the width; the epoch reset is a square icon beside it */
+.btn-grid--sync {
+  grid-template-columns: 1fr auto;
+}
+
 .drawer .hw-btn {
   justify-content: center;
   width: 100%;

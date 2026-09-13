@@ -66,6 +66,7 @@
   "admin.syncTitle": "Synchronization",
   "admin.syncAtLabel": "Access window opens at",
   "admin.syncButton": "Sync",
+  "admin.syncReset": "Restore the published epoch",
   "admin.cycleTimingTitle": "Cycle Timing",
   "admin.powerUpLabel": "Power-Up min/LED",
   "admin.powerDownLabel": "Power-Down min/LED",
