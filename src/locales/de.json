@@ -1,9 +1,8 @@
 {
   "header.subtitle": "Pyro-System - Umkämpfte Zonen",
   "header.langSelectLabel": "Sprache",
-  "sync.badgeTitle": "Letzte Timer-Synchronisierung",
-  "sync.label": "Letzte Sync",
-  "sync.never": "--",
+  "sync.badgeTitle": "Aktuell verwendete Zyklus-Epoche",
+  "sync.label": "Epoche",
   "panel.hangar": "Hangar",
   "panel.phaseRemaining": "Verbleibende Phase",
   "panel.totalCycle": "Gesamtzyklus",

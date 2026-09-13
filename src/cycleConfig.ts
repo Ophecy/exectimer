@@ -9,7 +9,7 @@ export interface CycleDurationOverrides {
 
 const DURATIONS_KEY = 'cycle-durations'
 const SYNC_ANCHOR_KEY = 'sync-anchor-ms'
-const LAST_SYNC_KEY = 'last-sync-ms'
+const SYNC_BUILD_EPOCH_KEY = 'sync-build-epoch-ms'
 
 export function loadDurationOverrides(): CycleDurationOverrides {
   return loadJSON<CycleDurationOverrides>(DURATIONS_KEY, {})
@@ -23,24 +23,18 @@ export function clearDurationOverrides(): void {
   clearKey(DURATIONS_KEY)
 }
 
-export function loadLastSyncMs(): number | null {
-  return loadJSON<number | null>(LAST_SYNC_KEY, null)
-}
-
 /**
- * A local sync only outranks the published epoch when it was performed *after*
- * that epoch shipped — otherwise a visitor who calibrated once would stay stuck
- * on their stale anchor and never pick up a freshly published observation.
- * The comparison is on when the sync was made, not on the instant it points at,
- * so anchoring on a moment observed in the past stays valid.
+ * A local sync holds only while the published epoch it was made against is the
+ * one still shipping: publishing a fresh observation recalibrates every visitor,
+ * including those who once synced on their own machine. The test is on which
+ * epoch was current, never on wall-clock order — an epoch legitimately points at
+ * a future instant, which a timestamp comparison would read as "already stale".
  */
 export function loadSyncAnchorMs(): number | null {
   const anchor = loadJSON<number | null>(SYNC_ANCHOR_KEY, null)
   if (anchor === null) return null
-  const lastSync = loadLastSyncMs()
-  if (lastSync === null || lastSync < BUILD_EPOCH_MS) {
-    clearKey(SYNC_ANCHOR_KEY)
-    clearKey(LAST_SYNC_KEY)
+  if (loadJSON<number | null>(SYNC_BUILD_EPOCH_KEY, null) !== BUILD_EPOCH_MS) {
+    clearSyncAnchor()
     return null
   }
   return anchor
@@ -49,12 +43,12 @@ export function loadSyncAnchorMs(): number | null {
 /** Drops the local calibration so the published build epoch takes over again. */
 export function clearSyncAnchor(): void {
   clearKey(SYNC_ANCHOR_KEY)
-  clearKey(LAST_SYNC_KEY)
+  clearKey(SYNC_BUILD_EPOCH_KEY)
 }
 
 export function saveSyncAnchorMs(ms: number): void {
   saveJSON(SYNC_ANCHOR_KEY, ms)
-  saveJSON(LAST_SYNC_KEY, Date.now())
+  saveJSON(SYNC_BUILD_EPOCH_KEY, BUILD_EPOCH_MS)
 }
 
 export function mergeCycleConfig(

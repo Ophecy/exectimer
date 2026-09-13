@@ -37,25 +37,29 @@ Object.defineProperty(globalThis, 'localStorage', {
   assert.equal(merged.referenceAllGreenAt.getTime(), anchorMs)
 }
 
-// A sync performed after the published epoch shipped outranks it — including
-// when it anchors on a moment observed in the past.
+// A sync made against the shipping epoch outranks it — whichever side of now
+// the anchor itself falls on. An epoch pointing at a future instant is normal.
 {
   store.clear()
   saveSyncAnchorMs(BUILD_EPOCH_MS - 3_600_000)
   assert.equal(loadSyncAnchorMs(), BUILD_EPOCH_MS - 3_600_000)
+
+  store.clear()
+  saveSyncAnchorMs(Date.now() + 3_600_000)
+  assert.notEqual(loadSyncAnchorMs(), null)
 }
 
-// A sync older than the published epoch is stale: it gets dropped so the
+// A sync made against a superseded epoch is stale: it gets dropped so the
 // visitor picks up the new project-wide anchor without resyncing by hand.
 {
   store.clear()
   saveSyncAnchorMs(BUILD_EPOCH_MS + 1_000)
-  store.set('pht:last-sync-ms', String(BUILD_EPOCH_MS - 1))
+  store.set('pht:sync-build-epoch-ms', String(BUILD_EPOCH_MS - 86_400_000))
   assert.equal(loadSyncAnchorMs(), null)
   assert.equal(store.has('pht:sync-anchor-ms'), false)
 }
 
-// An anchor with no recorded sync time predates the epoch mechanism entirely.
+// An anchor with no recorded epoch predates the mechanism entirely.
 {
   store.clear()
   store.set('pht:sync-anchor-ms', String(BUILD_EPOCH_MS + 1_000))

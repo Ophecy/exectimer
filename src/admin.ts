@@ -3,7 +3,6 @@ import {
   loadDurationOverrides,
   saveDurationOverrides,
   clearDurationOverrides,
-  loadLastSyncMs,
   saveSyncAnchorMs,
   clearSyncAnchor,
   type CycleDurationOverrides,
@@ -38,16 +37,14 @@ export function tickSyncInput(doc: Document): void {
   input.value = toLocalInputValue(new Date())
 }
 
+/** The anchor actually driving the cycle: the local sync if any, else the build epoch. */
 export function renderSyncBadge(doc: Document): void {
   const el = doc.getElementById('timestamp-badge')
   if (!el) return
   const lang = getCurrentLang()
-  const lastSync = loadLastSyncMs()
-  const timeText =
-    lastSync !== null
-      ? new Date(lastSync).toLocaleTimeString(lang, { hour: '2-digit', minute: '2-digit' })
-      : translate(lang, 'sync.never')
-  el.textContent = `${translate(lang, 'sync.label')}: ${timeText}`
+  const epoch = getEffectiveCycleConfig().referenceAllGreenAt
+  const stamp = epoch.toLocaleString(lang, { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
+  el.textContent = `${translate(lang, 'sync.label')}: ${stamp}`
 }
 
 function setDurationInputs(doc: Document): void {
@@ -113,8 +110,9 @@ export function initAdminPanel(doc: Document): void {
       return
     }
     saveSyncAnchorMs(anchor.getTime())
-    syncInputEdited = false
-    tickSyncInput(doc)
+    // the field keeps showing what was synced: it is now a readout of the
+    // anchor, not a clock the user has to fight on the next edit
+    syncInputEdited = true
     renderSyncBadge(doc)
     rerenderCycle(doc)
   })

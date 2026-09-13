@@ -1,9 +1,8 @@
 {
   "header.subtitle": "Pyro 系统 - 争夺区",
   "header.langSelectLabel": "语言",
-  "sync.badgeTitle": "上次计时器同步",
-  "sync.label": "上次同步",
-  "sync.never": "--",
+  "sync.badgeTitle": "当前使用的周期基准时刻",
+  "sync.label": "基准",
   "panel.hangar": "机库",
   "panel.phaseRemaining": "阶段剩余时间",
   "panel.totalCycle": "总周期",
