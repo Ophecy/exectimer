@@ -9,9 +9,9 @@ import { initTerminal, syncHudReadout } from './terminal.ts'
 const copyrightYear = document.querySelector<HTMLElement>('#copyright-year')
 if (copyrightYear) copyrightYear.textContent = String(new Date().getFullYear())
 
-// The deployed commit, baked in from the `GITHUB_SHA` of the Pages build.
+// The released version, resolved from the git tags at build time (vite.config.ts).
 const buildVersion = document.querySelector<HTMLElement>('#build-version')
-if (buildVersion) buildVersion.textContent = `BUILD ${import.meta.env?.VITE_APP_VERSION?.slice(0, 7) || 'DEV'}`
+if (buildVersion) buildVersion.textContent = import.meta.env?.VITE_APP_VERSION ?? 'dev'
 
 function renderAll() {
   const config = getEffectiveCycleConfig()
