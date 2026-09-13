@@ -80,6 +80,7 @@
   "a11y.screenRegion": "Ekran terminala",
   "hud.backToCycle": "Wróć do cyklu hangaru",
   "panel.opensIn": "Hangar otworzy się za",
+  "panel.closesIn": "Hangar zamknie się za",
   "rail.label": "Sekcje ekranu",
   "rail.cycle": "Cykl",
   "rail.maps": "Mapy",

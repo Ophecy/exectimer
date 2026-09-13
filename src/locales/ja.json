@@ -80,6 +80,7 @@
   "a11y.screenRegion": "ターミナル画面",
   "hud.backToCycle": "ハンガーサイクルに戻る",
   "panel.opensIn": "ハンガー開放まで",
+  "panel.closesIn": "ハンガー閉鎖まで",
   "rail.label": "画面セクション",
   "rail.cycle": "サイクル",
   "rail.maps": "マップ",

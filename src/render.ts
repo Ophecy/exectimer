@@ -51,6 +51,8 @@ export function renderCycleView(doc: Document, now: Date, config = DEFAULT_CYCLE
   setBarWidth(doc, 'led-progress-bar', ledPct)
   setText(doc, 'led-progress-text', ledPct)
 
+  // an open hangar counts down to its closing, not to another opening
+  setText(doc, 'hangar-opening-label', translate(lang, state.hangarAccessible ? 'panel.closesIn' : 'panel.opensIn'))
   setText(doc, 'hangar-opening-timer', state.hangarAccessible ? formatHMS(state.msRemainingInPhase) : formatHMS(state.msRemainingUntilOpen))
   setText(doc, 'hangar-opening-status', translate(lang, state.hangarAccessible ? 'status.openNow' : 'status.closed'))
 

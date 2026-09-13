@@ -80,6 +80,7 @@
   "a11y.screenRegion": "Экран терминала",
   "hud.backToCycle": "Вернуться к циклу ангара",
   "panel.opensIn": "Ангар откроется через",
+  "panel.closesIn": "Ангар закроется через",
   "rail.label": "Разделы экрана",
   "rail.cycle": "Цикл",
   "rail.maps": "Карты",

@@ -80,6 +80,7 @@
   "a11y.screenRegion": "Terminal-Bildschirm",
   "hud.backToCycle": "Zurück zum Hangar-Zyklus",
   "panel.opensIn": "Hangar öffnet in",
+  "panel.closesIn": "Hangar schließt in",
   "rail.label": "Bildschirmbereiche",
   "rail.cycle": "Zyklus",
   "rail.maps": "Karten",

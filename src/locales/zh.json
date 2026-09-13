@@ -80,6 +80,7 @@
   "a11y.screenRegion": "终端屏幕",
   "hud.backToCycle": "返回机库周期",
   "panel.opensIn": "机库开启倒计时",
+  "panel.closesIn": "机库关闭倒计时",
   "rail.label": "屏幕分区",
   "rail.cycle": "周期",
   "rail.maps": "地图",
