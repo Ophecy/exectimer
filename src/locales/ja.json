@@ -1,8 +1,8 @@
 {
   "header.subtitle": "Pyroシステム - 係争ゾーン",
   "header.langSelectLabel": "言語",
-  "sync.badgeTitle": "現在使用中のサイクル基準時刻",
-  "sync.label": "基準",
+  "sync.badgeTitle": "現在使用中のサイクル同期時刻",
+  "sync.label": "最終同期",
   "panel.hangar": "ハンガー",
   "panel.phaseRemaining": "残りフェーズ",
   "panel.totalCycle": "総サイクル",

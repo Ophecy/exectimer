@@ -1,8 +1,8 @@
 {
   "header.subtitle": "Sistema Pyro - Zone contese",
   "header.langSelectLabel": "Lingua",
-  "sync.badgeTitle": "Epoch del ciclo attualmente in uso",
-  "sync.label": "Epoch",
+  "sync.badgeTitle": "Punto di sincronizzazione del ciclo attualmente in uso",
+  "sync.label": "Ultima sync",
   "panel.hangar": "Hangar",
   "panel.phaseRemaining": "Fase rimanente",
   "panel.totalCycle": "Ciclo totale",

@@ -1,8 +1,8 @@
 {
   "header.subtitle": "Pyro System - Contested Zones",
   "header.langSelectLabel": "Language",
-  "sync.badgeTitle": "Cycle epoch currently in use",
-  "sync.label": "Epoch",
+  "sync.badgeTitle": "Cycle sync point currently in use",
+  "sync.label": "Last Sync",
   "panel.hangar": "Hangar",
   "panel.phaseRemaining": "Phase Remaining",
   "panel.totalCycle": "Total Cycle",

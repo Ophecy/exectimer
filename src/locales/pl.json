@@ -1,8 +1,8 @@
 {
   "header.subtitle": "System Pyro - Sporne strefy",
   "header.langSelectLabel": "Język",
-  "sync.badgeTitle": "Aktualnie używana epoka cyklu",
-  "sync.label": "Epoka",
+  "sync.badgeTitle": "Aktualnie używany punkt synchronizacji cyklu",
+  "sync.label": "Ostatnia sync.",
   "panel.hangar": "Hangar",
   "panel.phaseRemaining": "Pozostała faza",
   "panel.totalCycle": "Cały cykl",

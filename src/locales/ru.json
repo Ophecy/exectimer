@@ -1,8 +1,8 @@
 {
   "header.subtitle": "Система Pyro - Спорные зоны",
   "header.langSelectLabel": "Язык",
-  "sync.badgeTitle": "Текущая точка отсчёта цикла",
-  "sync.label": "Отсчёт",
+  "sync.badgeTitle": "Текущая точка синхронизации цикла",
+  "sync.label": "Последняя синхр.",
   "panel.hangar": "Ангар",
   "panel.phaseRemaining": "Осталось фазы",
   "panel.totalCycle": "Полный цикл",

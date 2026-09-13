@@ -1,8 +1,8 @@
 {
   "header.subtitle": "Sistema Pyro - Zonas contestadas",
   "header.langSelectLabel": "Idioma",
-  "sync.badgeTitle": "Época do ciclo em uso",
-  "sync.label": "Época",
+  "sync.badgeTitle": "Ponto de sincronização do ciclo em uso",
+  "sync.label": "Última sync",
   "panel.hangar": "Hangar",
   "panel.phaseRemaining": "Fase restante",
   "panel.totalCycle": "Ciclo total",
