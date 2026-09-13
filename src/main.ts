@@ -9,6 +9,10 @@ import { initTerminal, syncHudReadout } from './terminal.ts'
 const copyrightYear = document.querySelector<HTMLElement>('#copyright-year')
 if (copyrightYear) copyrightYear.textContent = String(new Date().getFullYear())
 
+// The deployed commit, baked in from the `GITHUB_SHA` of the Pages build.
+const buildVersion = document.querySelector<HTMLElement>('#build-version')
+if (buildVersion) buildVersion.textContent = `BUILD ${import.meta.env?.VITE_APP_VERSION?.slice(0, 7) || 'DEV'}`
+
 function renderAll() {
   const config = getEffectiveCycleConfig()
   const lang = getCurrentLang()

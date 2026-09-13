@@ -1,7 +1,5 @@
 {
   "header.subtitle": "Pyro 系统 - 争夺区",
-  "header.conceptBadge": "概念版本",
-  "header.conceptBadgeTitle": "概念版本 — 无实时游戏数据",
   "header.langSelectLabel": "语言",
   "sync.badgeTitle": "上次计时器同步",
   "sync.label": "上次同步",

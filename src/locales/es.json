@@ -1,7 +1,5 @@
 {
   "header.subtitle": "Sistema Pyro - Zonas en disputa",
-  "header.conceptBadge": "Build conceptual",
-  "header.conceptBadgeTitle": "Build conceptual — sin datos de juego en vivo",
   "header.langSelectLabel": "Idioma",
   "sync.badgeTitle": "Última sincronización del temporizador",
   "sync.label": "Última sync",

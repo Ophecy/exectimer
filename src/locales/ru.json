@@ -1,7 +1,5 @@
 {
   "header.subtitle": "Система Pyro - Спорные зоны",
-  "header.conceptBadge": "Концепт-билд",
-  "header.conceptBadgeTitle": "Концепт-билд — без данных игры в реальном времени",
   "header.langSelectLabel": "Язык",
   "sync.badgeTitle": "Последняя синхронизация таймера",
   "sync.label": "Последняя синхр.",

@@ -1,7 +1,5 @@
 {
   "header.subtitle": "Sistema Pyro - Zone contese",
-  "header.conceptBadge": "Build concettuale",
-  "header.conceptBadgeTitle": "Build concettuale — nessun dato di gioco in tempo reale",
   "header.langSelectLabel": "Lingua",
   "sync.badgeTitle": "Ultima sincronizzazione del timer",
   "sync.label": "Ultima sync",
