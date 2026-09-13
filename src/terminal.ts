@@ -14,6 +14,10 @@ export function syncHudReadout(doc: Document): void {
   const source = doc.getElementById('hangar-opening-timer')
   if (time && source) time.textContent = source.textContent
 
+  const label = doc.getElementById('hud-opening-label')
+  const labelSource = doc.getElementById('hangar-opening-label')
+  if (label && labelSource) label.textContent = labelSource.textContent
+
   const phase = doc.getElementById('hud-phase')
   const phaseSource = doc.getElementById('phase-status-total')
   if (phase && phaseSource) phase.textContent = phaseSource.textContent
